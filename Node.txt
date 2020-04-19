@@ -1,0 +1,17 @@
+<div class="col-lg-9 offset-lg-2 col-12 comment-main rounded" >
+  <ul class="p-0" >
+    <li class="wow fadeInUp">
+      <div class="row comment-box p-2 pt-4 pr-5" style="background: gray">
+        <div class="col-lg-10 col-9 user-comment bg-light rounded pb-1">
+         <div class="row">
+           <div class="col-lg-8 col-6 border-bottom pr-0">
+            <p class="w-100 p-2 m-0"><?=$r['Content']?>: <?=$r['Content']?></font>
+            </div>
+          </div> 
+        </div>
+      </div>
+
+
+    </li>
+  </ul>
+</div>
