@@ -104,8 +104,33 @@ if (!isset($_SESSION['username'])) {
   </div>
   <?php include('../left/leftbar.php')?>
   <div class="main_container">
+            <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+          <?php 
+            require_once('../config/dbconnector.php');
+            $cn = new DBConnector();
+           $id=$_GET['id'];
+            $sql="Select * from users where id_Trainee = '$id'";  
+            $rows = $cn->runQuery($sql);                       
+            foreach ($rows as $r) 
+          {
+          ?> 
+            <form>
+              <div class="card">
+                <div class="imgbox"><img src="../img/User_Avatar_2.png"></div>
+                  <div class="detail">
+                  <p class="title">Name: <?=$r['name']?></p>
+                  <p class="title">Email: <?=$r['email']?></p>
+                  <p class="title">Role: <?=$r['permision']?></p>
+                 
+                </div>
+
+              </div>
+            </form>
+          <?php } ?>
+               
+        </div>
   
-    <div class="item">
+    <div class="item <?php echo $_SESSION['permision'] == "Student" ? 'show' : 'hidden';?>">
       <div class="w3-panel">
             <div class="w3-row-padding" style="margin:0 -16px">
               <div class="w3-twothird">
@@ -126,7 +151,7 @@ if (!isset($_SESSION['username'])) {
                   $id_Trainee = $_SESSION['id_Trainee'];
                   require_once('../config/dbconnector.php');
                   $cn = new DBConnector();
-                  $sql="SELECT trainer_manager.name_Trainer,logchatbox.Time FROM logchatbox, trainer_manager WHERE logchatbox.id_Trainee = ".$id_Trainee." and logchatbox.id_Trainer = trainer_manager.id_Trainer and logchatbox.checkP='1' ORDER BY logchatbox.Time DESC";
+                  $sql="SELECT trainer_manager.name_Trainer,logchatbox.Time FROM logchatbox, trainer_manager WHERE logchatbox.id_Trainee  = ".$id_Trainee." and logchatbox.id_Trainer = trainer_manager.id_Trainer and logchatbox.checkP='1' ORDER BY logchatbox.Time DESC";
                   $rows = $cn->runQuery($sql);
                   foreach ($rows as $r) {
                     ?>
@@ -142,7 +167,7 @@ if (!isset($_SESSION['username'])) {
         </div>
     </div>
     
-    <div class="item">
+    <div class="item <?php echo $_SESSION['permision'] == "Student" ? 'show' : 'hidden';?>">
         <div class="w3-panel">
           <div class="w3-row-padding" style="margin:0 -16px">
             <div class="w3-twothird">
@@ -160,10 +185,11 @@ if (!isset($_SESSION['username'])) {
               </thead>
               <tbody>
                 <?php 
-                $id_Trainee = $_SESSION['id_Trainee'];
+                $id_Trainee = $_SESSION['id_Trainee'] ;
+               
                 require_once('../config/dbconnector.php');
                 $cn = new DBConnector();
-                $sql="SELECT DISTINCT(class.name),class.id,log.Time from users, trainee_manager, class_student, class, log WHERE users.id_Trainee = trainee_manager.id_Trainee and class_student.student_id = trainee_manager.id_Trainee AND class.id = class_student.class_id and users.id_Trainee= ".$id_Trainee." AND log.id_Trainee = trainee_manager.id_Trainee ORDER BY log.Time DESC";
+                $sql="SELECT DISTINCT(class.name),class.id,log.Time from users, trainee_manager, class_student, class, log WHERE users.id_Trainee = trainee_manager.id_Trainee and class_student.student_id = trainee_manager.id_Trainee AND class.id = class_student.class_id and users.id_Trainee= ".$id_Trainee."  AND log.id_Trainee = trainee_manager.id_Trainee  ORDER BY log.Time DESC";
                 $rows = $cn->runQuery($sql);
                 foreach ($rows as $r) {
                   ?>
@@ -178,6 +204,82 @@ if (!isset($_SESSION['username'])) {
         </div>
       </div>
     </div>
+
+     <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+      <div class="w3-panel">
+            <div class="w3-row-padding" style="margin:0 -16px">
+              <div class="w3-twothird">
+                <h5><b>Recently accessed chatbox</b></h5>
+                <table 
+                class="w3-table w3-striped w3-white "
+                data-toggle="table" 
+                data-pagination="true"
+                >
+                <thead>
+                  <tr>
+                    <th >ID tutor</i></th>
+                    <th >Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <?php 
+            require_once('../config/dbconnector.php');
+            $cn = new DBConnector();
+            $id=$_GET['id'];
+            $sql="Select * from logchatbox where id_Trainee = $id";  
+            $rows = $cn->runQuery($sql);                       
+            foreach ($rows as $r) 
+            {
+            ?> 
+                    <tr id="tr-id-2" class="tr-class-2">
+                      <td><?=$r['id_Trainer']?></td>
+                      <td><i><?=$r['Time']?></i></td>
+                    </tr>
+                  <?php } ?>
+                </tbody>    
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+      <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+        <div class="w3-panel">
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-twothird">
+              <h5><b>Recently accessed class</b></h5>
+              <table 
+              class="w3-table w3-striped w3-white "
+              data-toggle="table" 
+              data-pagination="true"
+              >
+              <thead>
+                <tr>
+                  <th >ID Class</i></th>
+                  <th >Time</th>
+                </tr>
+              </thead>
+              <tbody>
+               <?php 
+                require_once('../config/dbconnector.php');
+                $cn = new DBConnector();
+                $id=$_GET['id'];
+                $sql="Select * from log where id_Trainee = $id";  
+                $rows = $cn->runQuery($sql);                       
+                foreach ($rows as $r) 
+                {
+                ?> 
+                  <tr id="tr-id-2" class="tr-class-2">
+                    <td><?=$r['id_Class']?></td>
+                    <td><i><?=$r['Time']?></i></td>
+                  </tr>
+                <?php } ?>
+              </tbody>    
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   </div>
 </div>
