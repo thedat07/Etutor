@@ -123,7 +123,7 @@ if (!isset($_SESSION['username'])) {
                     <a href="../edit/Edit-Register_personal.php?id=<?=$r['id']?>" class="Edit" title="Edit" data-toggle="tooltip">
                       <i class="material-icons">edit</i>
                     </a>
-                    <a href="../view/DashbordOfPersonal.php?id=<?=$r['id']?>" class="View" title="Dashboard" data-toggle="tooltip">
+                    <a href="../view/DashbordOfPersonal.php?id=<?=$r['id_Trainer']?>" class="View" title="Dashboard" data-toggle="tooltip">
                       <i class="material-icons">dashboard</i>
                     </a>
                     <a href="../handling/handingregisterPersonal.php?id=<?=$r['id']?>" class="Delete" title="Delete" data-toggle="tooltip">
