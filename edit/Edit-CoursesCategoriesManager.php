@@ -19,7 +19,7 @@ if (!isset($_SESSION['username'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HomePage</title>
+  <title>Edit</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
   <link rel="stylesheet" type="text/css" href="../css/table.css">
@@ -104,7 +104,7 @@ if (!isset($_SESSION['username'])) {
                 <label for="comment">Descriptions:</label>
                 <textarea class="form-control" rows="5"  cols="65" id="comment" name="descriptions_Courses_categories"><?=$r['descriptions_Courses_categories']?></textarea>
               </div>
-              <div class="form-group col-md-6">             
+              <div class="input-group col-md-6">             
                 <input type="submit" class="btn "  name="update_Courses_categories" id="update_Courses_categories" value="Update"></div>
               </form>
             </div>
