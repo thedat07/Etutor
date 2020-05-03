@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Views Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -123,9 +124,13 @@ if (!isset($_SESSION['username'])) {
                     <a href="../edit/Edit-Register_students.php?id=<?=$r['id']?>" class="Edit" title="Edit" data-toggle="tooltip">
                       <i class="material-icons">edit</i>
                     </a>
-                    <a href="../view/DashbordOfStudent.php?id=<?=$r['id']?>" class="View" title="Dashboard" data-toggle="tooltip">
+
+
+               
+                    <a href="../view/DashbordOfStudent.php?id=<?=$r['id_student']?>" class="View" title="Dashboard" data-toggle="tooltip">
                       <i class="material-icons">dashboard</i>
                     </a>
+
                     <a href="../handling/handingRegisterStudent.php?id=<?=$r['id']?>" class="Delete" title="Delete" data-toggle="tooltip">
                       <i class="material-icons">&#xE872;</i>
                     </a>  

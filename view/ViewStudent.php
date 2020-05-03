@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Student List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -102,15 +103,15 @@ if (!isset($_SESSION['username'])) {
 
 					require_once('../config/dbconnector.php');
 					$cn = new DBConnector();
-					$sql="SELECT DISTINCT(comment.id_trainee),trainee_manager.name_Trainee,comment.id_document,comment.id_class FROM comment, trainee_manager WHERE comment.id_trainee = trainee_manager.id_Trainee and id_class = ".$Id_class." and id_document=".$id."";
+					$sql="SELECT DISTINCT(comment.id_student),student_manager.name_student,comment.id_document,comment.id_class FROM comment, student_manager WHERE comment.id_student = student_manager.id_student and id_class = ".$Id_class." and id_document=".$id."";
 					$rows = $cn->runQuery($sql);
 					foreach ($rows as $r) {
 						?>         
 						<tr>
-							<td><?=$r['name_Trainee']?></td>
-							<td><?=$r['id_trainee']?></td>
+							<td><?=$r['name_student']?></td>
+							<td><?=$r['id_student']?></td>
 							<td>  
-								<a href="../manager/CommentofPermision.php?id_document=<?=$r['id_document']?>&id_class=<?=$r['id_class']?>&id_trainee=<?=$r['id_trainee']?>" class="View" title="View" data-toggle="tooltip">
+								<a href="../manager/CommentofPermision.php?id_document=<?=$r['id_document']?>&id_class=<?=$r['id_class']?>&id_student=<?=$r['id_student']?>" class="View" title="View" data-toggle="tooltip">
 									<i class="material-icons">&#xe253;</i>
 								</a>  
 							</td>

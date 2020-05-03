@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Add Class</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -107,17 +108,17 @@ if (!isset($_SESSION['username'])) {
                </td>
              </div>
              <div class="form-group">
-              <label for="pwd">Trainer:</label>
+              <label for="pwd">Tutor:</label>
               <td>
-                <select class="form-control" id="exampleFormControlSelect1" name="id_Trainer">
+                <select class="form-control" id="exampleFormControlSelect1" name="id_tutor">
                   <?php 
                   require_once('../config/dbconnector.php');
                   $conn = new DBConnector();
-                  $sql = "Select * from trainer_manager";
+                  $sql = "Select * from tutor_manager";
                   $rows = $conn -> runQuery($sql);
                   foreach($rows as $r) {
                    ?>
-                   <option value="<?=$r['id_Trainer']?>"><?=$r['name_Trainer']?></option>
+                   <option value="<?=$r['id_tutor']?>"><?=$r['id_tutor']?></option>
                  <?php }?>
                </select>              
              </td>

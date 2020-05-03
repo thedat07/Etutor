@@ -2,12 +2,12 @@
 require_once('../config/dbconnector.php');
 if (isset($_POST['add_Trainer'])) {
         //them
-    $name_Trainer=$_POST['name_Trainer'];
-    $Working_place_Trainer=$_POST['Working_place_Trainer'];
-    $email_Trainer=$_POST['email_Trainer'];
-    $telephone_Trainer=$_POST['telephone_Trainer'];
+    $name_tutor=$_POST['name_tutor'];
+    $Working_place_tutor=$_POST['Working_place_tutor'];
+    $email_tutor=$_POST['email_tutor'];
+    $telephone_tutor=$_POST['telephone_tutor'];
 
-    $sql="Insert Into Trainer_manager(name_Trainer, Working_place_Trainer, email_Trainer, telephone_Trainer) values('".$name_Trainer."','".$Working_place_Trainer."','".$email_Trainer."','".$telephone_Trainer."')";
+    $sql="Insert Into tutor_manager(name_tutor, Working_place_tutor, email_tutor, telephone_tutor) values('".$name_tutor."','".$Working_place_tutor."','".$email_tutor."','".$telephone_tutor."')";
     
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);
@@ -27,12 +27,12 @@ if (isset($_POST['add_Trainer'])) {
 elseif (isset($_POST['update_Trainer'])) {
 
     $id=$_GET['id'];    
-    $name_Trainer=$_POST['name_Trainer'];
-    $Working_place_Trainer=$_POST['Working_place_Trainer'];
-    $email_Trainer=$_POST['email_Trainer'];
-    $telephone_Trainer=$_POST['telephone_Trainer'];
+    $name_tutor=$_POST['name_tutor'];
+    $Working_place_tutor=$_POST['Working_place_tutor'];
+    $email_tutor=$_POST['email_tutor'];
+    $telephone_tutor=$_POST['telephone_tutor'];
 
-    $sql = "UPDATE Trainer_manager SET name_Trainer = '".$name_Trainer."', Working_place_Trainer = '".$Working_place_Trainer."', email_Trainer = '".$email_Trainer."', telephone_Trainer = '".$telephone_Trainer."' WHERE id_Trainer = $id"; 
+    $sql = "UPDATE tutor_manager SET name_tutor = '".$name_tutor."', Working_place_tutor = '".$Working_place_tutor."', email_tutor = '".$email_tutor."', telephone_tutor = '".$telephone_tutor."' WHERE id_tutor = $id"; 
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);
     if ($return==0){
@@ -51,7 +51,7 @@ elseif (isset($_POST['update_Trainer'])) {
 }
 else{
     $id=$_GET['id'];
-    $sql="DELETE FROM Trainer_manager WHERE id_Trainer = $id";
+    $sql="DELETE FROM tutor_manager WHERE id_tutor = $id";
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);    
     if ($return==0){

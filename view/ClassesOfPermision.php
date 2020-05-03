@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Class</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -44,6 +45,7 @@ if (!isset($_SESSION['username'])) {
 	
 </style>
 <body>
+
 <div class="wrapper">
   <div class="top_navbar">
     <div class="hamburger">
@@ -86,8 +88,7 @@ if (!isset($_SESSION['username'])) {
 			<div class="panel panel-default">
 				<div class="panel-heading">Class show</div>
 			</div>
-			<div class="w3-container" >
-				&nbsp;                               
+			<div class="w3-container" >         
 				<table class="w3-table-all w3-hoverable ">
 					<thead >
 						<tr class="w3-light-grey">
@@ -98,10 +99,10 @@ if (!isset($_SESSION['username'])) {
 					</thead>
 					<tbody>
 						<?php
-						$id_Trainer = $_SESSION['id_Trainer'];
+						$id_tutor = $_SESSION['id_tutor'];
 						require_once('../config/dbconnector.php');
 						$cn = new DBConnector();
-						$sql="SELECT class.name, class.id FROM users, trainer_manager, class WHERE users.id_Trainer = trainer_manager.id_Trainer AND class.id_Trainer = trainer_manager.id_Trainer and trainer_manager.id_Trainer = ".$id_Trainer."";
+						$sql="SELECT class.name, class.id FROM users, tutor_manager, class WHERE users.id_tutor = tutor_manager.id_tutor AND class.id_tutor = tutor_manager.id_tutor and tutor_manager.id_tutor = ".$id_tutor."";
 						$rows = $cn->runQuery($sql);
 						foreach ($rows as $r) {
 							?>        

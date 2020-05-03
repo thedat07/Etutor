@@ -3,11 +3,12 @@ require_once('../config/dbconnector.php');
 if (isset($_POST['add_Register'])) {
         //them
     $username=$_POST['username'];
-    $password=$_POST['password'];
+    $password=md5($_POST['password']); 
     $permision=$_POST['permision'];
     $email=$_POST['email'];
     $name=$_POST['name'];
-    $id_Trainee=$_POST['id_Trainee'];
+    $id_student=$_POST['id_student'];
+
 
     $server_username = "root";
     $server_password = "";
@@ -30,7 +31,7 @@ if (isset($_POST['add_Register'])) {
     } 
     else{
 
-        $sql="Insert Into users(username, password, permision, name, email, id_Trainee) values('".$username."','".$password."','".$permision."','".$name."','".$email."','".$id_Trainee."')";
+        $sql="Insert Into users(username, password, permision, name, email, id_student) values('".$username."','".$password."','".$permision."','".$name."','".$email."','".$id_student."')";
         $cn = new DBConnector();
         $return = $cn->execStatement($sql);
         if ($return==0){
@@ -53,16 +54,16 @@ elseif (isset($_POST['update_Register'])) {
 
     $id=$_GET['id'];    
     $password=$_POST['password'];
-    $permision=$_POST['permision'];
+    $permision=md5($_POST['password']);
     $email=$_POST['email'];
     $name=$_POST['name'];
-    $id_Trainee=$_POST['id_Trainee'];
+    $id_student=$_POST['id_student'];
 
 
 
 
 
-         $sql = "UPDATE users SET  password = '".$password."', permision = '".$permision."', name = '".$name."', email = '".$email."', id_Trainee = '".$id_Trainee."' WHERE id = $id"; 
+         $sql = "UPDATE users SET  password = '".$password."', permision = '".$permision."', name = '".$name."', email = '".$email."', id_student = '".$id_student."' WHERE id = $id"; 
         $cn = new DBConnector();
         $return = $cn->execStatement($sql);
         if ($return==0){

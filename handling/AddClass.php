@@ -3,7 +3,7 @@ require_once('../config/dbconnector.php');
 if (isset($_POST['add_Class'])) {
         //them
 	$name=$_POST['name'];
-	$id_Trainer=$_POST['id_Trainer'];
+	$id_tutor=$_POST['id_tutor'];
 	$id_Course_manager=$_POST['id_Course_manager'];
 
     $server_username = "root";
@@ -14,7 +14,7 @@ if (isset($_POST['add_Class'])) {
     $conn = mysqli_connect($server_host,$server_username,$server_password,$database) or die("không thể kết nối tới database");
     mysqli_query($conn,"SET NAMES 'UTF8'");
     $conn1 = new DBConnector();
-    $sql1 = "Select * from users WHERE id_Trainer='$id_Trainer' ";
+    $sql1 = "Select * from users WHERE id_tutor='$id_tutor' ";
     $rows1 = $conn1 -> runQuery($sql1);
     foreach($rows1 as $r) {
         require '../PHPMailer-master/PHPMailerAutoload.php';
@@ -49,7 +49,7 @@ if (isset($_POST['add_Class'])) {
     } 
     else{
 
-        $sql = "Insert Into class(name, id_Trainer, id_Course_manager) values('".$name."','".$id_Trainer."','".$id_Course_manager."')";
+        $sql = "Insert Into class(name, id_tutor, id_Course_manager) values('".$name."','".$id_tutor."','".$id_Course_manager."')";
         $cn = new DBConnector();
         $return = $cn->execStatement($sql);
         if ($return==0){

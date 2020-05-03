@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Student Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -84,7 +85,7 @@ if (!isset($_SESSION['username'])) {
         
     <div class="item">
       <div class="panel panel-default">
-        <div class="panel-heading">Trainee show</div>
+        <div class="panel-heading">Student show</div>
       </div>
       <div class="w3-container" >
         <form class="form-inline md-form form-sm mt-0" action="TraineeManager.php" method="post">
@@ -107,22 +108,22 @@ if (!isset($_SESSION['username'])) {
             $cn = new DBConnector();
             if(isset($_POST['search'])) {
               $valueToSearch = $_POST['valueToSearch'];
-              $sql="Select * from trainee_manager where name_Trainee like  '%".$valueToSearch."%'";
+              $sql="Select * from student_manager where name_student like  '%".$valueToSearch."%'";
               $rows = $cn->runQuery($sql);
             }
             else{
-              $sql="Select * from trainee_manager";
+              $sql="Select * from student_manager";
               $rows = $cn->runQuery($sql);}
               foreach ($rows as $r) {
                 ?>        
                 <tr>
-                  <td><?=$r['id_Trainee']?></td>
-                  <td><?=$r['name_Trainee']?></td>
+                  <td><?=$r['id_student']?></td>
+                  <td><?=$r['name_student']?></td>
                   <td>
-                    <a href="../edit/Edit-TraineeManager.php?id=<?=$r['id_Trainee']?>" class="Edit" title="Edit" data-toggle="tooltip">
+                    <a href="../edit/Edit-TraineeManager.php?id=<?=$r['id_student']?>" class="Edit" title="Edit" data-toggle="tooltip">
                       <i class="material-icons">edit</i>
                     </a>
-                    <a href="../handling/handlingTrainee.php?id=<?=$r['id_Trainee']?>" class="Delete" title="Delete" data-toggle="tooltip">
+                    <a href="../handling/handlingTrainee.php?id=<?=$r['id_student']?>" class="Delete" title="Delete" data-toggle="tooltip">
                       <i class="material-icons">&#xE872;</i>
                     </a>  
                   </td>

@@ -3,7 +3,7 @@ require_once('../config/dbconnector.php');
 if (isset($_POST['add_Register'])) {
         //them
     $username=$_POST['username'];
-    $password=$_POST['password'];
+    $password=md5($_POST['password']); 
     $permision=$_POST['permision'];
     $email=$_POST['email'];
     $name=$_POST['name'];
@@ -51,7 +51,7 @@ if (isset($_POST['add_Register'])) {
 elseif (isset($_POST['update_Register'])) {
 
     $id=$_GET['id'];    
-    $password=$_POST['password'];
+    $password=md5($_POST['password']); 
     $permision=$_POST['permision'];
     $email=$_POST['email'];
     $name=$_POST['name'];

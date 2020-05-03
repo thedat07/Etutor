@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Student chat box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -102,7 +103,7 @@ if (!isset($_SESSION['username'])) {
   				$cn = new DBConnector();
   				$Id_permision=$_GET['Id_permision'];
   				$Id_student=$_GET['Id_student'];
-  				$sql="SELECT * FROM mess WHERE  id_trainer=$Id_permision and id_trainee=$Id_student ORDER BY Time DESC";
+  				$sql="SELECT * FROM mess WHERE  id_tutor=$Id_permision and id_student=$Id_student ORDER BY Time DESC";
   				$rows = $cn->runQuery($sql);
   				foreach ($rows as $r) {
 
@@ -150,7 +151,7 @@ if (!isset($_SESSION['username'])) {
 require_once('../config/dbconnector.php');
 $Id_student = $_GET['Id_student'];
 $Id_permision=$_GET['Id_permision'];
-$sql="INSERT INTO logchatbox(id_Trainer,id_Trainee,checkP) VALUES ('".$Id_permision."','".$Id_student."','1')";
+$sql="INSERT INTO logchatbox(id_tutor,id_student,checkP) VALUES ('".$Id_permision."','".$Id_student."','1')";
 $cn = new DBConnector();
 $return = $cn->execStatement($sql);
 

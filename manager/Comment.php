@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Student Comment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -105,8 +106,8 @@ if (!isset($_SESSION['username'])) {
   			<?php 
   				$id=$_GET['id'];
   				$id_class=$_GET['id_class'];
-  				$id_Trainee= $_SESSION['id_Trainee'];
-  				echo '<form action="../handling/addComment.php?id='.$id.'&id_class='.$id_class.'&id_Trainee='.$id_Trainee.'" method="post" enctype="multipart/form-data">';
+  				$id_student= $_SESSION['id_student'];
+  				echo '<form action="../handling/addComment.php?id='.$id.'&id_class='.$id_class.'&id_student='.$id_student.'" method="post" enctype="multipart/form-data">';
   			?>
   				<label >Student Comment:</label>
   				<div class="form-group">
@@ -129,8 +130,8 @@ if (!isset($_SESSION['username'])) {
   				$cn = new DBConnector();
   				$id=$_GET['id'];
   				$id_class=$_GET['id_class'];
-  				$id_Trainee= $_SESSION['id_Trainee'];
-  				$sql="SELECT * FROM comment WHERE  id_document= $id and id_trainee=$id_Trainee";
+  				$id_student= $_SESSION['id_student'];
+  				$sql="SELECT * FROM comment WHERE  id_document= $id and id_student=$id_student";
   				$rows = $cn->runQuery($sql);
   				foreach ($rows as $r) {
 

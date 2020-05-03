@@ -21,6 +21,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>DashBoard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -102,7 +103,34 @@ if (!isset($_SESSION['username'])) {
   <?php include('../left/leftbar.php')?>
   <div class="main_container">
 
-    <div class="item">
+                <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+          <?php 
+            require_once('../config/dbconnector.php');
+            $cn = new DBConnector();
+           $id=$_GET['id'];
+            $sql="Select * from users where id_tutor = '$id'";  
+            $rows = $cn->runQuery($sql);                       
+            foreach ($rows as $r) 
+          {
+          ?> 
+            <form>
+              <div class="card">
+                <div class="imgbox"><img src="../img/User_Avatar_2.png"></div>
+                  <div class="detail">
+                  <p class="title">Name: <?=$r['name']?></p>
+                  <p class="title">Email: <?=$r['email']?></p>
+                  <p class="title">Role: <?=$r['permision']?></p>
+                 
+                </div>
+
+              </div>
+            </form>
+          <?php } ?>
+               
+        </div>
+  
+
+         <div class="item <?php echo $_SESSION['permision'] == "Personal" ? 'show' : 'hidden';?>">
       <div class="w3-panel">
         <div class="w3-row-padding" style="margin:0 -16px">
           <div class="w3-twothird">
@@ -120,10 +148,10 @@ if (!isset($_SESSION['username'])) {
               </thead>
               <tbody>
                 <?php 
-                $id_Trainer = $_SESSION['id_Trainer'];
+                $id_tutor = $_SESSION['id_tutor'];
                 require_once('../config/dbconnector.php');
                 $cn = new DBConnector();
-                $sql="SELECT class.name, log.Time from log, trainer_manager, class WHERE log.id_Trainer = trainer_manager.id_Trainer AND trainer_manager.id_Trainer = ".$id_Trainer." AND class.id = log.id_Class ORDER BY log.Time DESC";
+                $sql="SELECT class.name, log.Time from log, tutor_manager, class WHERE log.id_tutor = tutor_manager.id_tutor AND tutor_manager.id_tutor = ".$id_tutor." AND class.id = log.id_Class ORDER BY log.Time DESC";
                 $rows = $cn->runQuery($sql);
                 foreach ($rows as $r) {
                   ?>
@@ -138,8 +166,8 @@ if (!isset($_SESSION['username'])) {
         </div>
       </div>
     </div>
-    <div class="item">
-      <div class="w3-panel">
+
+         <div class="item <?php echo $_SESSION['permision'] == "Personal" ? 'show' : 'hidden';?>">      <div class="w3-panel">
         <div class="w3-row-padding" style="margin:0 -16px">
           <div class="w3-twothird">
             <h5><b>Recently accessed chatbox</b></h5>
@@ -156,15 +184,90 @@ if (!isset($_SESSION['username'])) {
               </thead>
               <tbody>
                 <?php 
-                $id_Trainer = $_SESSION['id_Trainer'];
+                $id_tutor = $_SESSION['id_tutor'];
                 require_once('../config/dbconnector.php');
                 $cn = new DBConnector();
-                 $sql="SELECT trainee_manager.name_Trainee,logchatbox.Time FROM logchatbox, trainee_manager WHERE id_Trainer =  ".$id_Trainer." and logchatbox.id_Trainee = trainee_manager.id_Trainee and logchatbox.checkP='0' ORDER BY logchatbox.Time DESC LIMIT 5";
+                 $sql="SELECT student_manager.name_student,logchatbox.Time FROM logchatbox, student_manager WHERE id_tutor =  ".$id_tutor." and logchatbox.id_student = student_manager.id_student and logchatbox.checkP='0' ORDER BY logchatbox.Time DESC LIMIT 5";
                 $rows = $cn->runQuery($sql);
                 foreach ($rows as $r) {
                   ?>
                   <tr id="tr-id-2" class="tr-class-2">
-                    <td><?=$r['name_Trainee']?></td>
+                    <td><?=$r['name_student']?></td>
+                    <td><i><?=$r['Time']?></i></td>
+                  </tr>
+                <?php } ?>
+              </tbody>    
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+         <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+      <div class="w3-panel">
+            <div class="w3-row-padding" style="margin:0 -16px">
+              <div class="w3-twothird">
+                <h5><b>Recently accessed chatbox</b></h5>
+                <table 
+                class="w3-table w3-striped w3-white "
+                data-toggle="table" 
+                data-pagination="true"
+                >
+                <thead>
+                  <tr>
+                    <th >ID Student</i></th>
+                    <th >Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <?php 
+            require_once('../config/dbconnector.php');
+            $cn = new DBConnector();
+            $id=$_GET['id'];
+            $sql="Select * from logchatbox where id_tutor = $id";  
+            $rows = $cn->runQuery($sql);                       
+            foreach ($rows as $r) 
+            {
+            ?> 
+                    <tr id="tr-id-2" class="tr-class-2">
+                      <td><?=$r['id_student']?></td>
+                      <td><i><?=$r['Time']?></i></td>
+                    </tr>
+                  <?php } ?>
+                </tbody>    
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+      <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+        <div class="w3-panel">
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-twothird">
+              <h5><b>Recently accessed class</b></h5>
+              <table 
+              class="w3-table w3-striped w3-white "
+              data-toggle="table" 
+              data-pagination="true"
+              >
+              <thead>
+                <tr>
+                  <th >ID Class</i></th>
+                  <th >Time</th>
+                </tr>
+              </thead>
+              <tbody>
+               <?php 
+                require_once('../config/dbconnector.php');
+                $cn = new DBConnector();
+                $id=$_GET['id'];
+                $sql="Select * from log where id_tutor = $id";  
+                $rows = $cn->runQuery($sql);                       
+                foreach ($rows as $r) 
+                {
+                ?> 
+                  <tr id="tr-id-2" class="tr-class-2">
+                    <td><?=$r['id_Class']?></td>
                     <td><i><?=$r['Time']?></i></td>
                   </tr>
                 <?php } ?>

@@ -19,6 +19,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Student List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -100,25 +101,25 @@ if (!isset($_SESSION['username'])) {
           require_once('../config/dbconnector.php');
           $cn = new DBConnector();
           $id=$_GET['id'];
-          $id_Trainer = $_SESSION['id_Trainer'];
+          $id_tutor = $_SESSION['id_tutor'];
           if(isset($_POST['search'])) {
             $valueToSearch = $_POST['valueToSearch'];
-            $sql="SELECT * FROM class_student, trainee_manager WHERE class_student.student_id = trainee_manager.id_Trainee and class_id = $id  and class_student.name like  '%".$valueToSearch."%'";
+            $sql="SELECT * FROM class_student, student_manager WHERE class_student.student_id = student_manager.id_student and class_id = $id  and class_student.name like  '%".$valueToSearch."%'";
             $rows = $cn->runQuery($sql);
           }
           else{
-            $sql="SELECT * FROM class_student, trainee_manager WHERE class_student.student_id = trainee_manager.id_Trainee and class_id = $id ";
+            $sql="SELECT * FROM class_student, student_manager WHERE class_student.student_id = student_manager.id_student and class_id = $id ";
             $rows = $cn->runQuery($sql);}
             foreach ($rows as $r) {
               ?>        
               <tr>
                 <td><?=$r['student_id']?></td>
-                <td><?=$r['name_Trainee']?></td>
+                <td><?=$r['name_student']?></td>
                 <td>
-                  <a href="../view/Calandar.php?id_Trainee=<?=$r['student_id']?>&id_Trainer=<?php echo $id_Trainer ?>" class="Appointment" title="Appointment" data-toggle="tooltip">
+                  <a href="../view/Calandar.php?id_student=<?=$r['student_id']?>&id_tutor=<?php echo $id_tutor ?>" class="Appointment" title="Appointment" data-toggle="tooltip">
                     <i class="material-icons">&#xe8ae;</i>
                   </a>
-                  <a href="../manager/messPermision.php?Id_permision=<?php echo $id_Trainer ?>&Id_student=<?=$r['student_id']?>" class="Chat" title="Chat" data-toggle="tooltip"s>
+                  <a href="../manager/messPermision.php?Id_permision=<?php echo $id_tutor ?>&Id_student=<?=$r['student_id']?>" class="Chat" title="Chat" data-toggle="tooltip"s>
                     <i class="material-icons">&#xe253;</i><span class="badge badge-danger" id="count"></span>
                   </a> 
                 </td>

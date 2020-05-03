@@ -1,3 +1,4 @@
+
 <style type="">
   .show {
     display: block;
@@ -45,7 +46,7 @@
         <li class="<?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
           <a href="#" data-toggle="dropdown" class="dropdown">
             <span class="icon"><i class="fa fa-users"></i></span>
-            <span class="title">Personal Manager</span>
+            <span class="title">Tutor Manager</span>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -177,7 +178,7 @@
         <li class="<?php echo $_SESSION['permision'] == "Personal" ? 'show' : 'hidden';?>">
           <a href="#" data-toggle="dropdown" class="dropdown">
             <span class="icon"><i class="fa fa-graduation-cap"></i></span>
-            <span class="title" >Classes of Personal</span>
+            <span class="title" >Classes of Tutor</span>
           </a>
           <ul class="dropdown-menu">
             <li>
@@ -193,7 +194,7 @@
         <li class="<?php echo $_SESSION['permision'] == "Personal" ? 'show' : 'hidden';?>">
           <a href="#" data-toggle="dropdown" class="dropdown">
             <span class="icon"><i class="fa fa-bar-chart-o"></i></span>
-            <span class="title" >Dashbord  of personal</span>
+            <span class="title" >Dashbord  of Tutor</span>
           </a>
           <ul class="dropdown-menu">
             <li>

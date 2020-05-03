@@ -2,17 +2,17 @@
 session_start();
 
 if (!isset($_SESSION['username'])) {
-	header('Location:../manager/login.php');
+  header('Location:../manager/login.php');
 } else
 {
-	$permission = $_SESSION['permision'];
-	$txt1 = "Personal";
-	if ($permission != $txt1) {
-		echo '<script type="text/javascript">'; 
-		echo 'alert("You do not have permission to use this feature! !");'; 
-		echo 'window.location.href = "../manager/index.php";';
-		echo '</script>';
-	}
+  $permission = $_SESSION['permision'];
+  $txt1 = "Personal";
+  if ($permission != $txt1) {
+    echo '<script type="text/javascript">'; 
+    echo 'alert("You do not have permission to use this feature! !");'; 
+    echo 'window.location.href = "../manager/index.php";';
+    echo '</script>';
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Tutor Chat Box</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -83,49 +84,49 @@ if (!isset($_SESSION['username'])) {
   <div class="main_container">
         
     <div class="item">
-			<div class="panel panel-default">
-				<div class="panel-heading">Chat Box</div>
-			</div>
+      <div class="panel panel-default">
+        <div class="panel-heading">Chat Box</div>
+      </div>
 
-			<?php 
-			$Id_permision=$_GET['Id_permision'];
-			$Id_student=$_GET['Id_student'];
-			echo '<form action="../handling/ChatBox.php?Id_permision='.$Id_permision.'&Id_student='.$Id_student.'" method="post" enctype="multipart/form-data">';
-			?>
-			<div class="Scroll" >
-			<?php 
-				require_once('../config/dbconnector.php');
-				$cn = new DBConnector();
-				$Id_permision=$_GET['Id_permision'];
-				$Id_student=$_GET['Id_student'];
-				$sql="SELECT * FROM mess WHERE  id_trainer=$Id_permision and id_trainee=$Id_student ORDER BY Time DESC";
-				$rows = $cn->runQuery($sql);
-				foreach ($rows as $r) {
+      <?php 
+      $Id_permision=$_GET['Id_permision'];
+      $Id_student=$_GET['Id_student'];
+      echo '<form action="../handling/ChatBox.php?Id_permision='.$Id_permision.'&Id_student='.$Id_student.'" method="post" enctype="multipart/form-data">';
+      ?>
+      <div class="Scroll" >
+      <?php 
+        require_once('../config/dbconnector.php');
+        $cn = new DBConnector();
+        $Id_permision=$_GET['Id_permision'];
+        $Id_student=$_GET['Id_student'];
+        $sql="SELECT * FROM mess WHERE  id_tutor=$Id_permision and Id_student= $Id_student ORDER BY Time DESC";
+        $rows = $cn->runQuery($sql);
+        foreach ($rows as $r) {
 
-					?>
-					<div class="Mess_box">
-						<p>Content: <?=$r['mess']?></p>
+          ?>
+          <div class="Mess_box">
+            <p>Content: <?=$r['mess']?></p>
             <p class="Info"><?=$r['info']?></p>
             <p><a href="../upload/<?=$r['Document']?>" download><?=$r['Document']?></a></p>
-						<p class="Time">Time:<?=$r['Time']?> </p>
-					</div>
-				<?php } ?>
-			</div>
-			<label >Content:</label>
-			<div class="form-group">
-				<textarea  rows="2" cols="65%" name="Content" style="color: black"></textarea>
+            <p class="Time">Time:<?=$r['Time']?> </p>
+          </div>
+        <?php } ?>
+      </div>
+      <label >Content:</label>
+      <div class="form-group">
+        <textarea  rows="2" cols="65%" name="Content" style="color: black"></textarea>
       
-			</div>
+      </div>
 
       <div class="form-group">
         <div class="input-group">
           <input type="file" name="file">
         </div> 
       </div>
-			<div class="input-group "> 
-				<input type="submit" class="btn btn-success" name="Add" id="Add" value="Send">
-			</div>	    
-	</div>
+      <div class="input-group "> 
+        <input type="submit" class="btn btn-success" name="Add" id="Add" value="Send">
+      </div>      
+  </div>
   </div>
 </div>
 <div class="cube"></div>
@@ -139,7 +140,7 @@ if (!isset($_SESSION['username'])) {
 require_once('../config/dbconnector.php');
 $Id_student = $_GET['Id_student'];
 $Id_permision=$_GET['Id_permision'];
-$sql="INSERT INTO logchatbox(id_Trainer,id_Trainee,checkP) VALUES ('".$Id_permision."','".$Id_student."','0')";
+$sql="INSERT INTO logchatbox(id_tutor,Id_student,checkP) VALUES ('".$Id_permision."','".$Id_student."','0')";
 $cn = new DBConnector();
 $return = $cn->execStatement($sql);
 ?>

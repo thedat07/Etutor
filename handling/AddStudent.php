@@ -13,7 +13,7 @@ if (isset($_POST['add_student'])) {
     $conn = mysqli_connect($server_host,$server_username,$server_password,$database) or die("không thể kết nối tới database");
     mysqli_query($conn,"SET NAMES 'UTF8'");
     $conn1 = new DBConnector();
-    $sql1 = "Select * from users WHERE id_Trainee='$student_id' ";
+    $sql1 = "Select * from users WHERE id_student='$student_id' ";
     $rows1 = $conn1 -> runQuery($sql1);
     foreach($rows1 as $r) {
         require '../PHPMailer-master/PHPMailerAutoload.php';
@@ -38,7 +38,7 @@ if (isset($_POST['add_student'])) {
 
 
 
-    $sql="select * from trainee_manager where id_Trainee='$student_id'";
+    $sql="select * from student_manager where id_student='$student_id'";
     $kt=mysqli_query($conn, $sql);
 
 

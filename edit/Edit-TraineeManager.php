@@ -19,7 +19,8 @@ if (!isset($_SESSION['username'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HomePage</title>
+  <title>Edit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -82,41 +83,41 @@ if (!isset($_SESSION['username'])) {
   <div class="main_container">
     <div class="item">
       <div class="panel panel-default">
-        <div class="panel-heading">Trainee view</div>
+        <div class="panel-heading">Student view</div>
         <div class="panel-body">
           <?php 
           require_once('../config/dbconnector.php');
           $cn = new DBConnector();
           $id=$_GET['id'];
-          $sql="Select * from trainee_manager where id_Trainee = $id";  
+          $sql="Select * from student_manager where id_student = $id";  
           $rows = $cn->runQuery($sql);                       
           foreach ($rows as $r) 
           {
             ?> 
-            <form action="../handling/handlingTrainee.php?id=<?=$r['id_Trainee']?>" method="post" enctype="MULTIPLE/form-data">
+            <form action="../handling/handlingTrainee.php?id=<?=$r['id_student']?>" method="post" enctype="MULTIPLE/form-data">
               <div class="form-group col-md-6">
                 <label >Name</label>
-                <input type="text" class="form-control" placeholder="Name" name="name_Trainee" value="<?=$r['name_Trainee']?>" required>
+                <input type="text" class="form-control" placeholder="Name" name="name_student" value="<?=$r['name_student']?>" required>
               </div>
               <div class="form-group col-md-6">
                 <label >Education</label>
-                <input type="text" class="form-control" placeholder="Education" name="education_Trainee" value="<?=$r['education_Trainee']?>">
+                <input type="text" class="form-control" placeholder="Education" name="education_student" value="<?=$r['education_student']?>">
               </div>
               <div class="form-group col-md-6">
                 <label >Age</label>
-                <input type="text" class="form-control"  placeholder="Age" name="age_Trainee" value="<?=$r['age_Trainee']?>">
+                <input type="text" class="form-control"  placeholder="Age" name="age_student" value="<?=$r['age_student']?>">
               </div>
               <div class="form-group col-md-6">
                 <label>TOEIC score</label>
-                <input type="text" class="form-control" placeholder="TOEIC score" name="TOEIC_score_Trainee" value="<?=$r['TOEIC_score_Trainee']?>">
+                <input type="text" class="form-control" placeholder="TOEIC score" name="TOEIC_score_student" value="<?=$r['TOEIC_score_student']?>">
               </div>
               <div class="form-group col-md-6">
                 <label >DoB</label>
-                <input type="text" class="form-control"  placeholder="Date of birth" name="DoB_Trainee" value="<?=$r['DoB_Trainee']?>">
+                <input type="text" class="form-control"  placeholder="Date of birth" name="DoB_student" value="<?=$r['DoB_student']?>">
               </div>
               <div class="form-group col-md-6">
                 <label>Location</label>
-                <input type="text" class="form-control"  placeholder="Location" name="location_Trainee" value="<?=$r['location_Trainee']?>">
+                <input type="text" class="form-control"  placeholder="Location" name="location_student" value="<?=$r['location_student']?>">
               </div>
               <div class="input-group col-md-6">              
                 <input type="submit" class="btn " name="update_Trainee" id="update_Trainee" value="Update">

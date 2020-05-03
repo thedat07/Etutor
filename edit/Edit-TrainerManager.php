@@ -19,7 +19,8 @@ if (!isset($_SESSION['username'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HomePage</title>
+  <title>Edit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -84,37 +85,37 @@ if (!isset($_SESSION['username'])) {
   <div class="main_container">     
     <div class="item">
       <div class="panel panel-default">
-        <div class="panel-heading">Trainer show</div>
+        <div class="panel-heading">Tutor show</div>
           <div class="panel-body">
             <?php 
               require_once('../config/dbconnector.php');
               $cn = new DBConnector();
               $id=$_GET['id'];
-              $sql="Select * from trainer_manager where id_Trainer = $id";  
+              $sql="Select * from tutor_manager where id_tutor = $id";  
               $rows = $cn->runQuery($sql);                       
               foreach ($rows as $r) 
             {
             ?> 
 
-            <form action="../handling/handlingTrainer.php?id=<?=$r['id_Trainer']?>" method="post" enctype="MULTIPLE/form-data">
+            <form action="../handling/handlingTrainer.php?id=<?=$r['id_tutor']?>" method="post" enctype="MULTIPLE/form-data">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Name</label>
-                  <input type="text" class="form-control" id="inputEmail4" placeholder="Name" name="name_Trainer" value="<?=$r['name_Trainer']?>" required>
+                  <input type="text" class="form-control" id="inputEmail4" placeholder="Name" name="name_tutor" value="<?=$r['name_tutor']?>" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Working place</label>
-                  <input type="text" class="form-control" id="inputPassword4" placeholder="Working place" name="Working_place_Trainer" value="<?=$r['Working_place_Trainer']?>">
+                  <input type="text" class="form-control" id="inputPassword4" placeholder="Working place" name="Working_place_tutor" value="<?=$r['Working_place_tutor']?>">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email_Trainer" value="<?=$r['email_Trainer']?>">
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email_tutor" value="<?=$r['email_tutor']?>">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Telephone</label>
-                  <input type="text" class="form-control" id="inputPassword4" placeholder="Telephone" name="telephone_Trainer" value="<?=$r['telephone_Trainer']?>">
+                  <input type="text" class="form-control" id="inputPassword4" placeholder="Telephone" name="telephone_tutor" value="<?=$r['telephone_tutor']?>">
                 </div>
               </div>       
               <div class="input-group col-md-6">            

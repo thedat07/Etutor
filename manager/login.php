@@ -31,7 +31,7 @@ session_start();
 	if (isset($_POST["btn_submit"])) {
 
 		$username = $_POST["username"];
-		$password = $_POST["password"];
+		$password = md5($_POST['password']); 
 		$sql = "select * from users where username = '$username' and password = '$password' ";
 		$query = mysqli_query($conn,$sql);
 		$num_rows = mysqli_num_rows($query);
@@ -49,8 +49,8 @@ session_start();
 				$_SESSION["name"] = $data["name"];
 				$_SESSION["email"] = $data["email"];
 				$_SESSION["permision"] = $data["permision"];
-				$_SESSION["id_Trainer"] = $data["id_Trainer"];
-				$_SESSION["id_Trainee"] = $data["id_Trainee"];
+				$_SESSION["id_tutor"] = $data["id_tutor"];
+				$_SESSION["id_student"] = $data["id_student"];
 	    	}
 
 

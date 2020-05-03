@@ -8,12 +8,12 @@ $connect = new PDO('mysql:host=localhost;dbname=id9817382_fpt', 'root', '');
 
 if(isset($_POST["title"]))
 {
-	$id_Trainer=$_GET['id_Trainer']; 
-	$id_Trainee=$_GET['id_Trainee']; 
+	$id_tutor=$_GET['id_tutor']; 
+	$id_student=$_GET['id_student']; 
 	$query = "
 	INSERT INTO events 
-	(title, start_event, end_event,id_Trainer,id_Trainee) 
-	VALUES (:title, :start_event, :end_event,'".$id_Trainer."','".$id_Trainee."')
+	(title, start_event, end_event,id_tutor,id_student) 
+	VALUES (:title, :start_event, :end_event,'".$id_tutor."','".$id_student."')
 	";
 	$statement = $connect->prepare($query);
 	$statement->execute(

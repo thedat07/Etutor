@@ -2,14 +2,14 @@
 require_once('../config/dbconnector.php');
 if (isset($_POST['add_Trainee'])) {
         //them
-    $name_Trainee=$_POST['name_Trainee'];
-    $education_Trainee=$_POST['education_Trainee'];
-    $age_Trainee=$_POST['age_Trainee'];
-    $TOEIC_score_Trainee=$_POST['TOEIC_score_Trainee'];
-    $DoB_Trainee=$_POST['DoB_Trainee'];
-    $location_Trainee=$_POST['location_Trainee'];
+    $name_student=$_POST['name_student'];
+    $education_student=$_POST['education_student'];
+    $age_student=$_POST['age_student'];
+    $TOEIC_score_student=$_POST['TOEIC_score_student'];
+    $DoB_student=$_POST['DoB_student'];
+    $location_student=$_POST['location_student'];
 
-    $sql="Insert Into trainee_manager(name_Trainee, education_Trainee, age_Trainee, TOEIC_score_Trainee, DoB_Trainee, location_Trainee) values('".$name_Trainee."','".$education_Trainee."','".$age_Trainee."','".$TOEIC_score_Trainee."','".$DoB_Trainee."','".$location_Trainee."')";
+    $sql="Insert Into student_manager(name_student, education_student, age_student, TOEIC_score_student, DoB_student, location_student) values('".$name_student."','".$education_student."','".$age_student."','".$TOEIC_score_student."','".$DoB_student."','".$location_student."')";
     
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);
@@ -29,14 +29,14 @@ if (isset($_POST['add_Trainee'])) {
 elseif (isset($_POST['update_Trainee'])) {
 
     $id=$_GET['id'];    
-    $name_Trainee=$_POST['name_Trainee'];
-    $education_Trainee=$_POST['education_Trainee'];
-    $age_Trainee=$_POST['age_Trainee'];
-    $TOEIC_score_Trainee=$_POST['TOEIC_score_Trainee'];
-    $DoB_Trainee=$_POST['DoB_Trainee'];
-    $location_Trainee=$_POST['location_Trainee'];
+    $name_student=$_POST['name_student'];
+    $education_student=$_POST['education_student'];
+    $age_student=$_POST['age_student'];
+    $TOEIC_score_student=$_POST['TOEIC_score_student'];
+    $DoB_student=$_POST['DoB_student'];
+    $location_student=$_POST['location_student'];
 
-    $sql = "UPDATE trainee_manager SET name_Trainee = '".$name_Trainee."', education_Trainee = '".$education_Trainee."', age_Trainee = '".$age_Trainee."', TOEIC_score_Trainee = '".$TOEIC_score_Trainee."', DoB_Trainee = '".$DoB_Trainee."', location_Trainee = '".$location_Trainee."' WHERE id_Trainee = $id"; 
+    $sql = "UPDATE student_manager SET name_student = '".$name_student."', education_student = '".$education_student."', age_student = '".$age_student."', TOEIC_score_student = '".$TOEIC_score_student."', DoB_student = '".$DoB_student."', location_student = '".$location_student."' WHERE id_student = $id"; 
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);
 
@@ -56,7 +56,7 @@ elseif (isset($_POST['update_Trainee'])) {
 }
 else{
     $id=$_GET['id'];
-    $sql="DELETE FROM trainee_manager WHERE id_Trainee = $id";
+    $sql="DELETE FROM student_manager WHERE id_student = $id";
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);    
     if ($return==0){

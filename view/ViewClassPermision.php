@@ -21,6 +21,8 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Class</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -121,6 +123,7 @@ if (!isset($_SESSION['username'])) {
 							?>         
 							<tr>
 								<td><?=$r['Title']?></td>
+
 								<td><?=$r['Time']?></td>
 								<td>
 									<a href="../edit/Edit-AddDocument.php?id=<?=$r['Id']?>" class="Edit" title="Edit" data-toggle="tooltip">
@@ -143,9 +146,9 @@ if (!isset($_SESSION['username'])) {
 					<?php 
 
 				require_once('../config/dbconnector.php');
-				$id_Trainer  = $_SESSION['id_Trainer'];
+				$id_tutor  = $_SESSION['id_tutor'];
 				$id=$_GET['id'];
-				$sql="INSERT INTO log(id_Trainer ,id_Class) VALUES ('".$id_Trainer."','".$id."')";
+				$sql="INSERT INTO log(id_tutor ,id_Class) VALUES ('".$id_tutor."','".$id."')";
 				$cn = new DBConnector();
 				$return = $cn->execStatement($sql);
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2020 at 09:59 AM
+-- Generation Time: May 01, 2020 at 09:50 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -21,8 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `id9817382_fpt`
 --
-CREATE DATABASE IF NOT EXISTS `id9817382_fpt`DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE id9817382_fpt
+CREATE DATABASE IF NOT EXISTS `id9817382_fpt` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `id9817382_fpt`;
 -- --------------------------------------------------------
 
 --
@@ -32,7 +32,7 @@ USE id9817382_fpt
 CREATE TABLE `class` (
   `id` int(11) NOT NULL,
   `name` varchar(30) NOT NULL,
-  `id_Trainer` int(255) NOT NULL,
+  `id_tutor` int(255) NOT NULL,
   `id_Course_manager` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,9 +40,10 @@ CREATE TABLE `class` (
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`id`, `name`, `id_Trainer`, `id_Course_manager`) VALUES
+INSERT INTO `class` (`id`, `name`, `id_tutor`, `id_Course_manager`) VALUES
 (2, 'IT', 3, 2),
-(3, 'Desgin', 3, 2);
+(5, 'GCH89', 3, 2),
+(6, 'COMP1490', 3, 2);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,16 @@ INSERT INTO `class_student` (`id`, `class_id`, `student_id`) VALUES
 (60, 2, 30),
 (70, 2, 35),
 (123, 2, 37),
-(124, 2, 36);
+(124, 2, 36),
+(145, 2, 40),
+(156, 5, 30),
+(157, 5, 35),
+(161, 5, 36),
+(162, 5, 37),
+(163, 5, 40),
+(164, 5, 42),
+(165, 6, 30),
+(166, 6, 35);
 
 -- --------------------------------------------------------
 
@@ -75,12 +85,12 @@ INSERT INTO `class_student` (`id`, `class_id`, `student_id`) VALUES
 CREATE TABLE `comment` (
   `id_document` int(255) NOT NULL,
   `id_class` int(255) NOT NULL,
-  `id_trainer` int(255) NOT NULL,
+  `id_tutor` int(255) NOT NULL,
   `id_comment` int(255) NOT NULL,
   `Content` char(255) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Document` varchar(255) NOT NULL,
-  `id_trainee` int(255) NOT NULL,
+  `id_student` int(255) NOT NULL,
   `Name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -88,10 +98,17 @@ CREATE TABLE `comment` (
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` (`id_document`, `id_class`, `id_trainer`, `id_comment`, `Content`, `Time`, `Document`, `id_trainee`, `Name`) VALUES
+INSERT INTO `comment` (`id_document`, `id_class`, `id_tutor`, `id_comment`, `Content`, `Time`, `Document`, `id_student`, `Name`) VALUES
 (103, 2, 0, 21, 'Gui bai\r\n				', '2020-03-18 09:05:03', 'codester-7544-advance-comment-system-php-script (1).zip', 30, 'Student'),
 (103, 2, 3, 22, 'tra bai\r\n				', '2020-03-18 09:05:26', 'codester-7544-advance-comment-system-php-script (1).zip', 30, 'Permision'),
-(103, 2, 0, 23, 'dat		', '2020-03-24 03:39:11', 'New Piskel (2)-1.png.png', 30, 'Student');
+(103, 2, 0, 23, 'dat		', '2020-03-24 03:39:11', 'New Piskel (2)-1.png.png', 30, 'Student'),
+(103, 2, 3, 24, 'info\r\n					', '2020-04-20 17:55:22', '', 30, 'Permision'),
+(103, 2, 0, 25, 'This is my file\r\n  					', '2020-04-20 19:09:29', 'project.png', 36, 'Student'),
+(104, 5, 0, 26, 'Meet document\r\n  					', '2020-04-24 15:43:00', 'Sprint backlog.xlsx', 30, 'Student'),
+(103, 2, 0, 27, 'Ä‘Ã¢y lÃ  flie em\r\n\r\n  					', '2020-04-26 15:57:29', 'id9817382_fpt (1).sql', 30, 'Student'),
+(103, 2, 3, 28, 'Ä‘Ã¢y lÃ  flie tháº§y					', '2020-04-26 16:19:11', 'id9817382_fpt (2).sql', 30, 'Permision'),
+(103, 2, 0, 29, 'info\r\n  					', '2020-04-27 15:15:54', '', 30, 'Student'),
+(103, 2, 3, 30, 'This is teacher flie\r\n					', '2020-04-28 08:11:21', 'Teamwork-2.docx', 36, 'Permision');
 
 -- --------------------------------------------------------
 
@@ -110,8 +127,8 @@ CREATE TABLE `courses_categories_manager` (
 --
 
 INSERT INTO `courses_categories_manager` (`id_Courses_categories`, `name_category`, `descriptions_Courses_categories`) VALUES
-(1, 'A', '1'),
-(2, 'IT', 'hoc ve IT');
+(2, 'IT', 'Learn about IT very good'),
+(3, 'Computing', 'This is Computing courses category and everyone can join');
 
 -- --------------------------------------------------------
 
@@ -131,8 +148,8 @@ CREATE TABLE `course_manager` (
 --
 
 INSERT INTO `course_manager` (`id_Course_manager`, `id_Courses_categories`, `name_Courses`, `descriptions_Courses`) VALUES
-(1, 1, '1', '1'),
-(2, 2, 'Hoc IT', 'asdasda');
+(2, 2, 'Security', 'Security is very popular'),
+(3, 3, 'Website design', 'This is an advanced course');
 
 -- --------------------------------------------------------
 
@@ -147,15 +164,16 @@ CREATE TABLE `document` (
   `Id_class` varchar(255) NOT NULL,
   `Document` varchar(255) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_trainer` int(11) NOT NULL
+  `id_tutor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `document`
 --
 
-INSERT INTO `document` (`Id`, `Title`, `Content`, `Id_class`, `Document`, `Time`, `id_trainer`) VALUES
-(103, '121', 'info\r\n            ', '2', 'feature-live-preview.gif', '2020-03-17 10:12:28', 0);
+INSERT INTO `document` (`Id`, `Title`, `Content`, `Id_class`, `Document`, `Time`, `id_tutor`) VALUES
+(103, '121', 'info\r\n            ', '2', 'feature-live-preview.gif', '2020-03-17 10:12:28', 0),
+(104, 'meeting log', 'information exchange\r\n              ', '5', 'Sprint Planning.docx', '2020-04-03 16:29:10', 0);
 
 -- --------------------------------------------------------
 
@@ -168,20 +186,22 @@ CREATE TABLE `events` (
   `title` varchar(255) NOT NULL,
   `start_event` datetime NOT NULL,
   `end_event` datetime NOT NULL,
-  `id_Trainer` int(255) NOT NULL,
-  `id_Trainee` int(255) NOT NULL
+  `id_tutor` int(255) NOT NULL,
+  `id_student` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `start_event`, `end_event`, `id_Trainer`, `id_Trainee`) VALUES
+INSERT INTO `events` (`id`, `title`, `start_event`, `end_event`, `id_tutor`, `id_student`) VALUES
 (11, 'asdas', '2020-04-16 00:00:00', '2020-04-17 00:00:00', 0, 0),
 (12, 'asdas', '2020-04-08 00:00:00', '2020-04-09 00:00:00', 0, 0),
 (18, 'dat', '2020-04-04 10:30:00', '2020-04-04 11:00:00', 3, 32),
-(22, 'hoang12', '2020-04-08 00:00:00', '2020-04-09 00:00:00', 3, 30),
-(23, 'k', '2020-04-03 00:00:00', '2020-04-04 00:00:00', 3, 30);
+(25, 'Coding challenge', '2020-03-30 00:00:00', '2020-03-31 00:00:00', 3, 40),
+(26, 'Coding challenge', '2020-03-30 00:00:00', '2020-03-31 00:00:00', 3, 36),
+(28, 'information exchange', '2020-04-10 00:00:00', '2020-04-11 00:00:00', 3, 30),
+(29, 'Problem solving', '2020-04-09 00:00:00', '2020-04-10 00:00:00', 3, 30);
 
 -- --------------------------------------------------------
 
@@ -190,17 +210,17 @@ INSERT INTO `events` (`id`, `title`, `start_event`, `end_event`, `id_Trainer`, `
 --
 
 CREATE TABLE `log` (
-  `id_Trainee` int(11) NOT NULL,
+  `id_student` int(11) NOT NULL,
   `id_Class` int(11) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `id_Trainer` int(11) NOT NULL
+  `id_tutor` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `log`
 --
 
-INSERT INTO `log` (`id_Trainee`, `id_Class`, `Time`, `id_Trainer`) VALUES
+INSERT INTO `log` (`id_student`, `id_Class`, `Time`, `id_tutor`) VALUES
 (30, 2, '2020-04-06 05:49:35', 0),
 (37, 2, '2020-04-06 05:49:47', 0),
 (0, 2, '2020-04-06 09:24:28', 3),
@@ -343,7 +363,148 @@ INSERT INTO `log` (`id_Trainee`, `id_Class`, `Time`, `id_Trainer`) VALUES
 (30, 2, '2020-04-14 07:49:10', 0),
 (30, 2, '2020-04-14 07:49:29', 0),
 (30, 2, '2020-04-14 07:49:32', 0),
-(30, 2, '2020-04-14 07:49:35', 0);
+(30, 2, '2020-04-14 07:49:35', 0),
+(30, 2, '2020-04-14 08:21:36', 0),
+(30, 2, '2020-04-14 08:21:49', 0),
+(30, 2, '2020-04-14 08:22:59', 0),
+(30, 2, '2020-04-14 08:24:04', 0),
+(30, 2, '2020-04-14 08:24:29', 0),
+(30, 2, '2020-04-14 08:26:33', 0),
+(30, 2, '2020-04-14 08:29:49', 0),
+(30, 2, '2020-04-14 08:29:54', 0),
+(30, 2, '2020-04-14 08:31:04', 0),
+(30, 2, '2020-04-14 08:31:48', 0),
+(30, 2, '2020-04-14 08:31:52', 0),
+(30, 2, '2020-04-14 08:32:12', 0),
+(30, 2, '2020-04-14 08:36:06', 0),
+(30, 2, '2020-04-14 08:40:41', 0),
+(37, 2, '2020-04-18 04:41:56', 0),
+(37, 2, '2020-04-18 04:42:01', 0),
+(37, 2, '2020-04-18 04:42:04', 0),
+(37, 2, '2020-04-18 05:07:34', 0),
+(37, 2, '2020-04-18 12:34:06', 0),
+(37, 2, '2020-04-18 12:49:54', 0),
+(37, 2, '2020-04-18 12:49:56', 0),
+(37, 2, '2020-04-18 12:50:00', 0),
+(30, 2, '2020-04-18 12:52:13', 0),
+(30, 2, '2020-04-18 12:53:47', 0),
+(30, 2, '2020-04-19 13:42:22', 0),
+(30, 2, '2020-04-19 13:43:07', 0),
+(30, 2, '2020-04-19 13:46:07', 0),
+(30, 2, '2020-04-20 05:52:49', 0),
+(30, 2, '2020-04-20 06:59:56', 0),
+(30, 2, '2020-04-20 06:59:59', 0),
+(30, 2, '2020-04-20 10:44:57', 0),
+(30, 2, '2020-04-20 10:45:05', 0),
+(30, 2, '2020-04-20 10:45:34', 0),
+(30, 2, '2020-04-20 15:10:40', 0),
+(0, 2, '2020-04-20 17:36:19', 3),
+(0, 2, '2020-04-20 17:36:24', 3),
+(0, 2, '2020-04-20 17:36:37', 3),
+(30, 2, '2020-04-20 17:47:34', 0),
+(0, 2, '2020-04-20 17:55:05', 3),
+(0, 2, '2020-04-20 17:55:12', 3),
+(30, 2, '2020-04-20 18:29:54', 0),
+(35, 2, '2020-04-20 18:46:47', 0),
+(35, 2, '2020-04-20 18:46:59', 0),
+(35, 2, '2020-04-20 18:47:13', 0),
+(35, 2, '2020-04-20 18:47:39', 0),
+(35, 2, '2020-04-20 18:48:01', 0),
+(36, 2, '2020-04-20 18:51:26', 0),
+(36, 2, '2020-04-20 18:52:06', 0),
+(36, 2, '2020-04-20 18:52:24', 0),
+(36, 2, '2020-04-20 18:56:07', 0),
+(36, 2, '2020-04-20 18:56:15', 0),
+(36, 2, '2020-04-20 18:56:24', 0),
+(36, 2, '2020-04-20 18:57:25', 0),
+(36, 2, '2020-04-20 18:57:52', 0),
+(36, 2, '2020-04-20 18:57:58', 0),
+(36, 2, '2020-04-20 18:58:03', 0),
+(36, 2, '2020-04-20 19:02:53', 0),
+(36, 2, '2020-04-20 19:03:09', 0),
+(36, 2, '2020-04-20 19:03:12', 0),
+(36, 2, '2020-04-20 19:09:49', 0),
+(36, 2, '2020-04-20 19:09:53', 0),
+(36, 2, '2020-04-20 19:23:23', 0),
+(36, 2, '2020-04-20 19:23:27', 0),
+(36, 2, '2020-04-20 19:34:58', 0),
+(36, 2, '2020-04-20 19:35:03', 0),
+(36, 2, '2020-04-20 19:35:05', 0),
+(0, 5, '2020-04-21 16:12:33', 3),
+(0, 5, '2020-04-21 16:12:47', 3),
+(0, 2, '2020-04-21 16:13:57', 3),
+(0, 2, '2020-04-21 16:14:04', 3),
+(0, 2, '2020-04-21 16:14:14', 3),
+(0, 2, '2020-04-03 16:17:28', 3),
+(0, 2, '2020-04-03 16:17:38', 3),
+(0, 5, '2020-04-03 16:18:19', 3),
+(0, 5, '2020-04-03 16:19:13', 3),
+(0, 5, '2020-04-03 16:19:41', 3),
+(0, 5, '2020-04-03 16:21:21', 3),
+(0, 5, '2020-04-03 16:29:12', 3),
+(0, 5, '2020-04-03 16:29:18', 3),
+(0, 5, '2020-04-03 16:29:24', 3),
+(0, 5, '2020-04-03 16:30:26', 3),
+(0, 5, '2020-04-03 16:30:28', 3),
+(0, 5, '2020-04-03 16:31:11', 3),
+(0, 5, '2020-04-03 16:34:58', 3),
+(0, 5, '2020-04-03 16:35:03', 3),
+(0, 5, '2020-04-03 16:35:12', 3),
+(0, 5, '2020-04-19 16:46:07', 3),
+(0, 5, '2020-04-19 16:46:14', 3),
+(0, 5, '2020-04-21 16:59:29', 3),
+(30, 2, '2020-04-24 15:38:08', 0),
+(30, 5, '2020-04-24 15:41:42', 0),
+(30, 5, '2020-04-24 15:42:06', 0),
+(30, 5, '2020-04-24 16:08:04', 0),
+(0, 2, '2020-04-24 16:42:53', 3),
+(0, 5, '2020-04-24 16:42:57', 3),
+(0, 5, '2020-04-24 16:43:04', 3),
+(0, 5, '2020-04-24 16:43:34', 3),
+(0, 5, '2020-04-24 16:51:52', 3),
+(0, 5, '2020-04-24 16:52:00', 3),
+(0, 5, '2020-04-24 16:52:16', 3),
+(0, 5, '2020-04-24 16:52:45', 3),
+(30, 2, '2020-04-26 15:56:52', 0),
+(30, 2, '2020-04-26 15:57:00', 0),
+(30, 2, '2020-04-26 16:00:05', 0),
+(30, 2, '2020-04-26 16:00:10', 0),
+(30, 2, '2020-04-26 16:00:12', 0),
+(0, 2, '2020-04-26 16:00:23', 3),
+(0, 2, '2020-04-26 16:00:51', 3),
+(0, 2, '2020-04-26 16:00:56', 3),
+(0, 2, '2020-04-26 16:18:48', 3),
+(0, 2, '2020-04-26 16:19:22', 3),
+(0, 2, '2020-04-26 16:19:28', 3),
+(0, 2, '2020-04-26 16:19:38', 3),
+(0, 2, '2020-04-27 09:12:19', 3),
+(0, 2, '2020-04-27 09:12:27', 3),
+(0, 2, '2020-04-27 09:12:38', 3),
+(0, 2, '2020-04-27 09:14:11', 3),
+(0, 2, '2020-04-27 09:14:47', 3),
+(0, 2, '2020-04-27 09:14:52', 3),
+(0, 2, '2020-04-27 09:15:14', 3),
+(0, 2, '2020-04-27 09:15:17', 3),
+(0, 2, '2020-04-27 09:15:25', 3),
+(30, 2, '2020-04-27 15:15:45', 0),
+(0, 2, '2020-04-27 18:09:17', 3),
+(0, 2, '2020-04-27 18:09:31', 3),
+(0, 2, '2020-04-27 18:10:22', 3),
+(0, 2, '2020-04-27 18:11:44', 3),
+(0, 2, '2020-04-27 18:13:38', 3),
+(0, 2, '2020-04-27 18:13:45', 3),
+(0, 2, '2020-04-27 18:13:51', 3),
+(0, 2, '2020-04-27 18:15:26', 3),
+(0, 2, '2020-04-27 18:15:43', 3),
+(0, 2, '2020-04-27 18:16:40', 3),
+(0, 2, '2020-04-27 18:17:26', 3),
+(30, 2, '2020-04-28 08:09:17', 0),
+(30, 2, '2020-04-28 08:09:28', 0),
+(36, 2, '2020-04-28 08:10:09', 0),
+(0, 2, '2020-04-28 08:10:44', 3),
+(36, 5, '2020-04-28 08:12:03', 0),
+(36, 5, '2020-04-28 08:12:06', 0),
+(36, 2, '2020-04-28 08:12:08', 0);
 
 -- --------------------------------------------------------
 
@@ -352,8 +513,8 @@ INSERT INTO `log` (`id_Trainee`, `id_Class`, `Time`, `id_Trainer`) VALUES
 --
 
 CREATE TABLE `logchatbox` (
-  `id_Trainer` int(11) NOT NULL,
-  `id_Trainee` int(11) NOT NULL,
+  `id_tutor` int(11) NOT NULL,
+  `id_student` int(11) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `checkP` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -362,7 +523,7 @@ CREATE TABLE `logchatbox` (
 -- Dumping data for table `logchatbox`
 --
 
-INSERT INTO `logchatbox` (`id_Trainer`, `id_Trainee`, `Time`, `checkP`) VALUES
+INSERT INTO `logchatbox` (`id_tutor`, `id_student`, `Time`, `checkP`) VALUES
 (3, 30, '2020-04-05 09:37:50', 1),
 (3, 30, '2020-04-05 09:41:28', 0),
 (3, 35, '2020-04-05 09:44:13', 0),
@@ -435,7 +596,104 @@ INSERT INTO `logchatbox` (`id_Trainer`, `id_Trainee`, `Time`, `checkP`) VALUES
 (3, 30, '2020-04-14 07:46:48', 0),
 (3, 35, '2020-04-14 07:46:50', 0),
 (3, 30, '2020-04-14 07:48:14', 0),
-(3, 35, '2020-04-14 07:48:22', 0);
+(3, 35, '2020-04-14 07:48:22', 0),
+(3, 30, '2020-04-14 08:21:27', 1),
+(3, 30, '2020-04-14 08:21:42', 1),
+(3, 30, '2020-04-14 08:22:10', 1),
+(3, 30, '2020-04-14 08:29:45', 1),
+(3, 30, '2020-04-14 08:32:18', 1),
+(3, 30, '2020-04-17 06:23:34', 0),
+(3, 30, '2020-04-17 06:24:07', 0),
+(3, 35, '2020-04-17 06:24:16', 0),
+(3, 30, '2020-04-17 06:24:47', 0),
+(3, 35, '2020-04-17 06:25:07', 0),
+(3, 30, '2020-04-17 06:30:30', 0),
+(3, 30, '2020-04-17 06:33:41', 0),
+(3, 30, '2020-04-17 06:35:21', 0),
+(3, 35, '2020-04-17 06:35:24', 0),
+(3, 36, '2020-04-17 06:35:27', 0),
+(3, 30, '2020-04-17 07:40:46', 0),
+(3, 30, '2020-04-17 07:41:46', 0),
+(3, 30, '2020-04-17 07:45:17', 0),
+(3, 30, '2020-04-18 03:45:28', 0),
+(3, 30, '2020-04-18 04:11:46', 0),
+(3, 30, '2020-04-18 04:11:51', 0),
+(3, 30, '2020-04-18 04:19:27', 0),
+(3, 30, '2020-04-18 04:19:38', 0),
+(3, 37, '2020-04-18 04:41:40', 1),
+(3, 37, '2020-04-18 12:34:08', 1),
+(3, 37, '2020-04-18 12:50:19', 1),
+(3, 37, '2020-04-18 12:50:30', 1),
+(3, 30, '2020-04-18 12:51:05', 0),
+(3, 30, '2020-04-18 12:51:16', 0),
+(3, 30, '2020-04-18 12:53:38', 1),
+(3, 30, '2020-04-18 12:59:09', 1),
+(3, 37, '2020-04-18 13:00:41', 1),
+(3, 30, '2020-04-18 13:01:02', 0),
+(3, 30, '2020-04-18 13:01:14', 0),
+(3, 37, '2020-04-18 13:01:24', 1),
+(3, 30, '2020-04-18 13:02:16', 1),
+(3, 30, '2020-04-18 13:02:36', 1),
+(3, 30, '2020-04-18 13:02:39', 0),
+(3, 30, '2020-04-18 13:02:54', 1),
+(3, 30, '2020-04-18 13:03:00', 0),
+(3, 30, '2020-04-18 13:03:12', 1),
+(3, 30, '2020-04-18 13:03:21', 0),
+(3, 30, '2020-04-18 13:04:33', 1),
+(3, 30, '2020-04-18 13:04:38', 0),
+(3, 30, '2020-04-19 13:42:16', 1),
+(3, 30, '2020-04-20 05:52:52', 1),
+(3, 30, '2020-04-20 06:59:53', 1),
+(3, 37, '2020-04-20 08:35:00', 1),
+(3, 30, '2020-04-20 15:10:13', 1),
+(3, 30, '2020-04-20 15:10:46', 1),
+(3, 30, '2020-04-20 17:33:19', 1),
+(3, 30, '2020-04-20 17:34:53', 1),
+(3, 30, '2020-04-20 17:38:31', 1),
+(3, 30, '2020-04-20 17:39:53', 1),
+(3, 30, '2020-04-20 17:42:09', 1),
+(3, 35, '2020-04-20 17:54:41', 0),
+(3, 40, '2020-04-20 18:20:48', 0),
+(3, 40, '2020-04-20 18:21:02', 0),
+(3, 40, '2020-04-20 18:24:18', 0),
+(3, 35, '2020-04-20 18:39:24', 1),
+(3, 35, '2020-04-20 18:39:43', 1),
+(3, 35, '2020-04-20 18:46:45', 1),
+(3, 35, '2020-04-20 18:48:08', 1),
+(3, 36, '2020-04-20 18:50:27', 1),
+(3, 36, '2020-04-20 18:52:10', 1),
+(3, 36, '2020-04-20 18:52:18', 1),
+(3, 36, '2020-04-20 18:52:48', 1),
+(3, 36, '2020-04-20 18:53:44', 1),
+(3, 36, '2020-04-20 18:56:03', 1),
+(3, 36, '2020-04-20 19:35:14', 1),
+(3, 30, '2020-04-21 15:46:56', 0),
+(3, 30, '2020-04-21 16:12:54', 0),
+(3, 30, '2020-04-03 16:16:32', 0),
+(3, 30, '2020-04-03 16:18:28', 0),
+(3, 30, '2020-04-03 16:36:26', 0),
+(3, 30, '2020-04-03 16:51:37', 0),
+(3, 30, '2020-04-03 16:51:45', 0),
+(3, 30, '2020-04-03 16:52:25', 0),
+(3, 30, '2020-04-21 16:54:04', 0),
+(3, 30, '2020-04-24 15:38:30', 1),
+(3, 30, '2020-04-26 15:57:45', 1),
+(3, 30, '2020-04-26 15:57:58', 1),
+(3, 30, '2020-04-26 16:00:42', 0),
+(3, 30, '2020-04-26 16:01:04', 0),
+(3, 30, '2020-04-26 16:04:54', 0),
+(3, 30, '2020-04-26 16:07:37', 0),
+(3, 30, '2020-04-26 16:08:37', 0),
+(3, 30, '2020-04-26 16:08:42', 0),
+(3, 30, '2020-04-26 16:08:53', 0),
+(3, 30, '2020-04-26 16:08:57', 0),
+(3, 30, '2020-04-26 16:13:30', 0),
+(3, 30, '2020-04-27 09:15:06', 0),
+(3, 30, '2020-04-27 15:15:42', 1),
+(3, 30, '2020-04-28 08:04:36', 1),
+(3, 30, '2020-04-28 08:06:05', 1),
+(3, 36, '2020-04-28 08:11:58', 1),
+(3, 36, '2020-04-28 08:12:01', 1);
 
 -- --------------------------------------------------------
 
@@ -444,8 +702,8 @@ INSERT INTO `logchatbox` (`id_Trainer`, `id_Trainee`, `Time`, `checkP`) VALUES
 --
 
 CREATE TABLE `mess` (
-  `id_trainer` int(11) NOT NULL,
-  `id_trainee` int(11) NOT NULL,
+  `id_tutor` int(11) NOT NULL,
+  `id_student` int(11) NOT NULL,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `mess` varchar(255) NOT NULL,
   `info` varchar(255) NOT NULL,
@@ -456,7 +714,7 @@ CREATE TABLE `mess` (
 -- Dumping data for table `mess`
 --
 
-INSERT INTO `mess` (`id_trainer`, `id_trainee`, `Time`, `mess`, `info`, `Document`) VALUES
+INSERT INTO `mess` (`id_tutor`, `id_student`, `Time`, `mess`, `info`, `Document`) VALUES
 (0, 30, '2020-03-24 13:39:29', '', 'Student', ''),
 (3, 30, '2020-03-24 13:40:06', '', 'Student', ''),
 (3, 30, '2020-03-24 13:40:15', 'hi\r\n', 'Student', ''),
@@ -487,7 +745,51 @@ INSERT INTO `mess` (`id_trainer`, `id_trainee`, `Time`, `mess`, `info`, `Documen
 (3, 30, '2020-04-14 07:27:50', '', 'Student', '5.1 HTTP GET and Post.docx'),
 (3, 30, '2020-04-14 07:29:04', 'ÄÃ¢y lÃ  flie', 'Student', '5.2 HTTP GET and Post (cont).docx'),
 (3, 30, '2020-04-14 07:31:51', 'ÄÃ¢y lÃ  flile cá»§a tháº§y\r\n', 'Permision', ''),
-(3, 30, '2020-04-14 07:33:51', 'ÄÃ¢y lÃ  flie cá»§a tháº§y', 'Permision', 'lab 4.1-Login Form.docx');
+(3, 30, '2020-04-14 07:33:51', 'ÄÃ¢y lÃ  flie cá»§a tháº§y', 'Permision', 'lab 4.1-Login Form.docx'),
+(3, 30, '2020-04-18 13:01:13', 'Chao em', 'Permision', ''),
+(3, 30, '2020-04-18 13:02:36', 'chao thay\r\n', 'Student', ''),
+(3, 30, '2020-04-18 13:02:54', 'chao thay', 'Student', ''),
+(3, 30, '2020-04-18 13:03:12', 'hello', 'Student', ''),
+(3, 30, '2020-04-18 13:04:33', 'chao em', 'Student', ''),
+(3, 30, '2020-04-20 17:39:53', 'hello', 'Student', ''),
+(3, 30, '2020-04-20 17:42:09', 'Hello, I am Student', 'Student', ''),
+(3, 40, '2020-04-20 18:21:02', 'Hello', 'Permision', ''),
+(3, 35, '2020-04-20 18:39:43', 'Hello, I am Student', 'Student', ''),
+(3, 36, '2020-04-20 18:53:44', '', 'Student', 'feature-live-preview.gif'),
+(3, 30, '2020-04-03 16:51:45', 'Hello', 'Permision', ''),
+(3, 30, '2020-04-03 16:52:25', 'Hello', 'Permision', ''),
+(3, 30, '2020-04-21 16:54:04', 'Hello hoang', 'Permision', ''),
+(3, 30, '2020-04-26 15:57:58', 'chÃ o tháº§y', 'Student', 'id9817382_fpt (1).sql'),
+(3, 30, '2020-04-26 16:08:53', 'chÃ o em ', 'Permision', 'id9817382_fpt (2).sql'),
+(3, 30, '2020-04-28 08:06:05', 'Good Morning Teacher\r\n', 'Student', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_manager`
+--
+
+CREATE TABLE `student_manager` (
+  `id_student` int(255) NOT NULL,
+  `name_student` varchar(255) NOT NULL,
+  `education_student` varchar(255) NOT NULL,
+  `TOEIC_score_student` varchar(255) NOT NULL,
+  `DoB_student` varchar(255) NOT NULL,
+  `age_student` int(200) NOT NULL,
+  `location_student` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `student_manager`
+--
+
+INSERT INTO `student_manager` (`id_student`, `name_student`, `education_student`, `TOEIC_score_student`, `DoB_student`, `age_student`, `location_student`) VALUES
+(30, 'Pham Tuan Hoang', 'IT', '8.0', '10/8/1999', 21, 'FPT'),
+(35, 'Bui Viet Hoang', 'IT', '7.0', '01/02/1999', 21, 'FPT'),
+(36, 'Nguyen Cong Trung', 'IT', '7.0', '04/07/1998', 22, 'FPT'),
+(37, 'Cao The Giang', 'IT', '7.5', '10/08/1999', 22, 'FPT'),
+(40, 'Pham Cao Duong', 'IT', '9.0', '22/10/1999', 21, 'FPT'),
+(42, 'Tran Ngoc Linh', 'IT', '8.0', '10/1/1999', 21, 'FPT');
 
 -- --------------------------------------------------------
 
@@ -505,51 +807,23 @@ CREATE TABLE `topic_manager` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trainee_manager`
+-- Table structure for table `tutor_manager`
 --
 
-CREATE TABLE `trainee_manager` (
-  `id_Trainee` int(255) NOT NULL,
-  `name_Trainee` varchar(255) NOT NULL,
-  `education_Trainee` varchar(255) NOT NULL,
-  `TOEIC_score_Trainee` varchar(255) NOT NULL,
-  `DoB_Trainee` varchar(255) NOT NULL,
-  `age_Trainee` int(200) NOT NULL,
-  `location_Trainee` varchar(255) NOT NULL
+CREATE TABLE `tutor_manager` (
+  `id_tutor` int(255) NOT NULL,
+  `name_tutor` varchar(255) NOT NULL,
+  `Working_place_tutor` varchar(255) NOT NULL,
+  `email_tutor` varchar(255) NOT NULL,
+  `telephone_tutor` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `trainee_manager`
+-- Dumping data for table `tutor_manager`
 --
 
-INSERT INTO `trainee_manager` (`id_Trainee`, `name_Trainee`, `education_Trainee`, `TOEIC_score_Trainee`, `DoB_Trainee`, `age_Trainee`, `location_Trainee`) VALUES
-(30, 'dat', '', '', '', 0, ''),
-(35, 'hoang', '', '', '01011999', 18, ''),
-(36, 'trung', '', '', '01011998', 18, ''),
-(37, 'duong', '', '', '01011999', 18, ''),
-(38, 'Tuan Anh', '', '', '', 0, '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `trainer_manager`
---
-
-CREATE TABLE `trainer_manager` (
-  `id_Trainer` int(255) NOT NULL,
-  `name_Trainer` varchar(255) NOT NULL,
-  `Working_place_Trainer` varchar(255) NOT NULL,
-  `email_Trainer` varchar(255) NOT NULL,
-  `telephone_Trainer` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `trainer_manager`
---
-
-INSERT INTO `trainer_manager` (`id_Trainer`, `name_Trainer`, `Working_place_Trainer`, `email_Trainer`, `telephone_Trainer`) VALUES
-(3, 'dung', '', '', ''),
-(4, 'ha', '', '', '');
+INSERT INTO `tutor_manager` (`id_tutor`, `name_tutor`, `Working_place_tutor`, `email_tutor`, `telephone_tutor`) VALUES
+(3, 'dung', 'FPT', 'dungpt@gmail.com', '096996999');
 
 -- --------------------------------------------------------
 
@@ -560,27 +834,27 @@ INSERT INTO `trainer_manager` (`id_Trainer`, `name_Trainer`, `Working_place_Trai
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `permision` varchar(255) NOT NULL,
-  `id_Trainer` int(255) NOT NULL,
-  `id_Trainee` int(255) NOT NULL
+  `id_tutor` int(255) NOT NULL,
+  `id_student` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `permision`, `id_Trainer`, `id_Trainee`) VALUES
-(11, 'dat', '1', 'dat', 'thedatmno07@gmail.com', 'Student', 0, 30),
-(17, '1', '1', 'admin', 'Admin@gmail.com', 'Admin', 0, 0),
-(18, 'dung', '1', 'dung', '1', 'Personal', 3, 0),
-(21, 'dat0712', '1', 'dat0712', 'thedatmno07@gmail.com', 'Admin', 0, 0),
-(22, 'hoang', '1', 'hoang', 'hoangptgch17420@fpt.edu.vn', 'Student', 0, 35),
-(23, 'trung', '1', 'trung', 'trungncgch16478@fpt.edu.vn', 'Student', 0, 36),
-(24, 'duong', '1', 'duong', 'duongpcgch17362@fpt.edu.vn', 'Student', 0, 37),
-(27, 'Tuan Anh', '1', 'Tuan Anh', 'TuanAnh1@gmai.com', 'Student', 0, 38);
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `permision`, `id_tutor`, `id_student`) VALUES
+(40, '2', 'c81e728d9d4c2f636f067f89cc14862c', '2', '2', 'Admin', 0, 0),
+(41, 'Admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'Nguyen Ngoc Han', 'AdminHan@gmail.com', 'Admin', 0, 0),
+(42, 'hoangpt@gmail.com', '5e5545d38a68148a2d5bd5ec9a89e327', 'Pham Tuan Hoang', 'hoangptgch17420@fpt.edu.vn', 'Student', 0, 30),
+(43, 'hoangbv@gmail.com', '213ee683360d88249109c2f92789dbc3', 'Bui Viet Hoang', 'hoangbvgch17056@fpt.edu.vn', 'Student', 0, 35),
+(44, 'Trungnc@gmail.com', '8e4947690532bc44a8e41e9fb365b76a', 'Nguyen Cong Trung', 'hoangbvgch17056@fpt.edu.vn', 'Student', 0, 36),
+(45, 'Giangct@gmail.com', '166a50c910e390d922db4696e4c7747b', 'Cao The Giang', 'trungncgch16478@fpt.edu.vn', 'Student', 0, 37),
+(46, 'Duongpc@gmail.com', '4dc060a45f4fb7910fa0f5224db6501c', 'Pham Cao Duong', 'duongpcgch17362@fpt.edu.vn', 'Student', 0, 40),
+(47, 'Dungml@gmail.com', '8d788385431273d11e8b43bb78f3aa41', 'Lai Manh Dung', 'datntgch16336@fpt.edu.vn', 'Personal', 3, 0);
 
 --
 -- Indexes for dumped tables
@@ -591,7 +865,7 @@ INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `permision`,
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_Trainer` (`id_Trainer`),
+  ADD KEY `id_Trainer` (`id_tutor`),
   ADD KEY `id_Course_manager` (`id_Course_manager`);
 
 --
@@ -634,6 +908,12 @@ ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student_manager`
+--
+ALTER TABLE `student_manager`
+  ADD PRIMARY KEY (`id_student`);
+
+--
 -- Indexes for table `topic_manager`
 --
 ALTER TABLE `topic_manager`
@@ -641,16 +921,10 @@ ALTER TABLE `topic_manager`
   ADD KEY `id_Course_manager` (`id_Course_manager`);
 
 --
--- Indexes for table `trainee_manager`
+-- Indexes for table `tutor_manager`
 --
-ALTER TABLE `trainee_manager`
-  ADD PRIMARY KEY (`id_Trainee`);
-
---
--- Indexes for table `trainer_manager`
---
-ALTER TABLE `trainer_manager`
-  ADD PRIMARY KEY (`id_Trainer`);
+ALTER TABLE `tutor_manager`
+  ADD PRIMARY KEY (`id_tutor`);
 
 --
 -- Indexes for table `users`
@@ -666,43 +940,49 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `class_student`
 --
 ALTER TABLE `class_student`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=167;
 
 --
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id_comment` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_comment` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `courses_categories_manager`
 --
 ALTER TABLE `courses_categories_manager`
-  MODIFY `id_Courses_categories` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_Courses_categories` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `course_manager`
 --
 ALTER TABLE `course_manager`
-  MODIFY `id_Course_manager` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_Course_manager` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `document`
 --
 ALTER TABLE `document`
-  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `Id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
 
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT for table `student_manager`
+--
+ALTER TABLE `student_manager`
+  MODIFY `id_student` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `topic_manager`
@@ -711,22 +991,16 @@ ALTER TABLE `topic_manager`
   MODIFY `id_topic_manager` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `trainee_manager`
+-- AUTO_INCREMENT for table `tutor_manager`
 --
-ALTER TABLE `trainee_manager`
-  MODIFY `id_Trainee` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
-
---
--- AUTO_INCREMENT for table `trainer_manager`
---
-ALTER TABLE `trainer_manager`
-  MODIFY `id_Trainer` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `tutor_manager`
+  MODIFY `id_tutor` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
@@ -736,7 +1010,7 @@ ALTER TABLE `users`
 -- Constraints for table `class`
 --
 ALTER TABLE `class`
-  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`id_Trainer`) REFERENCES `trainer_manager` (`id_Trainer`),
+  ADD CONSTRAINT `class_ibfk_1` FOREIGN KEY (`id_tutor`) REFERENCES `tutor_manager` (`id_tutor`),
   ADD CONSTRAINT `class_ibfk_2` FOREIGN KEY (`id_Course_manager`) REFERENCES `course_manager` (`id_Course_manager`);
 
 --
@@ -744,7 +1018,7 @@ ALTER TABLE `class`
 --
 ALTER TABLE `class_student`
   ADD CONSTRAINT `class_student_ibfk_1` FOREIGN KEY (`class_id`) REFERENCES `class` (`id`),
-  ADD CONSTRAINT `class_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `trainee_manager` (`id_Trainee`);
+  ADD CONSTRAINT `class_student_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `student_manager` (`id_student`);
 
 --
 -- Constraints for table `course_manager`

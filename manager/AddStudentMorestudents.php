@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Add Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -105,26 +106,26 @@ if (!isset($_SESSION['username'])) {
                </td>
              </div>
                 <div class="form-group">
-                  <label >ID Trainee 1:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id1" >
-                  <label >ID Trainee 2:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id2" >
-                  <label >ID Trainee 3:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id3" >
-                  <label >ID Trainee 4:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id4" >
-                  <label >ID Trainee 5:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id5" >
-                  <label >ID Trainee 6:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id6" >
-                  <label >ID Trainee 7:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id7" >
-                  <label >ID Trainee 8:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id8" >
-                  <label >ID Trainee 9:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id9" >
-                  <label >ID Trainee 10:</label>
-                  <input type="text" class="form-control" placeholder="ID trainee" name="student_id10" >
+                  <label >ID Student 1:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id1" >
+                  <label >ID Student 2:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id2" >
+                  <label >ID Student 3:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id3" >
+                  <label >ID Student 4:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id4" >
+                  <label >ID Student 5:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id5" >
+                  <label >ID Student 6:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id6" >
+                  <label >ID Student 7:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id7" >
+                  <label >ID Student 8:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id8" >
+                  <label >ID Student 9:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id9" >
+                  <label >ID Student 10:</label>
+                  <input type="text" class="form-control" placeholder="ID student" name="student_id10" >
                 </div>
                 <div class="input-group">              
                   <input type="submit" class="btn btn-success" name="add_student" id="add_student" value="Add">

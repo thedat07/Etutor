@@ -12,7 +12,7 @@ if (isset($_POST['Add'])) {
     $targetFilePath = $targetDir . $fileName;
      move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
 
-    $sql="Insert Into mess(id_trainer , id_trainee, mess, info, Document ) values ('".$Id_permision."','".$Id_student."','".$Content."','Permision', '".$fileName."')";
+    $sql="Insert Into mess(id_tutor , id_student, mess, info, Document ) values ('".$Id_permision."','".$Id_student."','".$Content."','Permision', '".$fileName."')";
     
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);
@@ -39,7 +39,7 @@ if (isset($_POST['Add_Student'])) {
     $targetFilePath = $targetDir . $fileName;
      move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
 
-    $sql="Insert Into mess(id_trainer , id_trainee, mess, info, Document  ) values ('".$Id_permision."','".$Id_student."','".$Content."','Student','".$fileName."')";
+    $sql="Insert Into mess(id_tutor , id_student, mess, info, Document  ) values ('".$Id_permision."','".$Id_student."','".$Content."','Student','".$fileName."')";
     
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);

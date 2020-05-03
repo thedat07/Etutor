@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Class</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -121,19 +122,19 @@ if (!isset($_SESSION['username'])) {
           $id=$_GET['id'];
           if(isset($_POST['search'])) {
             $valueToSearch = $_POST['valueToSearch'];
-            $sql="SELECT * FROM class_student, trainee_manager WHERE class_student.student_id = trainee_manager.id_Trainee and class_id = $id  and class_student.name like  '%".$valueToSearch."%'";
+            $sql="SELECT * FROM class_student, student_manager WHERE class_student.student_id = student_manager.id_student and class_id = $id  and class_student.name like  '%".$valueToSearch."%'";
             $rows = $cn->runQuery($sql);
           }
           else{
-            $sql="SELECT * FROM class_student, trainee_manager WHERE class_student.student_id = trainee_manager.id_Trainee and class_id = $id ";
+            $sql="SELECT * FROM class_student, student_manager WHERE class_student.student_id = student_manager.id_student and class_id = $id ";
             $rows = $cn->runQuery($sql);}
             foreach ($rows as $r) {
               ?>        
               <tr>
                 <td><?=$r['student_id']?></td>
-                <td><?=$r['name_Trainee']?></td>
+                <td><?=$r['name_student']?></td>
                 <td>
-                  <a href="../edit/Edit-TraineeManager.php?id=<?=$r['id_Trainee']?>" class="View" title="View" data-toggle="tooltip">
+                  <a href="../edit/Edit-TraineeManager.php?id=<?=$r['id_student']?>" class="View" title="View" data-toggle="tooltip">
                     <i class="material-icons">&#xe8a0;</i>
                   </a> 
                   <a href="../handling/handlingClassinfo.php?student_id=<?=$r['student_id']?>&id=<?=$r['class_id']?>" class="Delete" title="Delete" data-toggle="tooltip">

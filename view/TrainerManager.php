@@ -19,7 +19,8 @@ if (!isset($_SESSION['username'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Personal Manager</title>
+  <title>Tutor Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -84,7 +85,7 @@ if (!isset($_SESSION['username'])) {
         
     <div class="item">
       <div class="panel panel-default">
-        <div class="panel-heading">Trainer show</div>
+        <div class="panel-heading">Tutor show</div>
       </div>
       <div class="w3-container" >
         <form class="form-inline md-form form-sm mt-0" action="TrainerManager.php" method="post">
@@ -107,22 +108,22 @@ if (!isset($_SESSION['username'])) {
             $cn = new DBConnector();
             if(isset($_POST['search'])) {
               $valueToSearch = $_POST['valueToSearch'];
-              $sql="Select * from trainer_manager where name_Trainer like  '%".$valueToSearch."%'";
+              $sql="Select * from tutor_manager where name_tutor like  '%".$valueToSearch."%'";
               $rows = $cn->runQuery($sql);
             }
             else{
-              $sql="Select * from trainer_manager";
+              $sql="Select * from tutor_manager";
               $rows = $cn->runQuery($sql);}
               foreach ($rows as $r) {
                 ?>          
                 <tr>
-                  <td><?=$r['id_Trainer']?></td>
-                  <td><?=$r['name_Trainer']?></td>
+                  <td><?=$r['id_tutor']?></td>
+                  <td><?=$r['name_tutor']?></td>
                   <td>
-                    <a href="../edit/Edit-TrainerManager.php?id=<?=$r['id_Trainer']?>" class="Edit" title="Edit" data-toggle="tooltip">
+                    <a href="../edit/Edit-TrainerManager.php?id=<?=$r['id_tutor']?>" class="Edit" title="Edit" data-toggle="tooltip">
                       <i class="material-icons">edit</i>
                     </a>
-                    <a href="../handling/handlingTrainer.php?id=<?=$r['id_Trainer']?>" class="Delete" title="Delete" data-toggle="tooltip">
+                    <a href="../handling/handlingTrainer.php?id=<?=$r['id_tutor']?>" class="Delete" title="Delete" data-toggle="tooltip">
                       <i class="material-icons">&#xE872;</i>
                     </a>  
                   </td>

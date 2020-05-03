@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Class</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -99,27 +100,27 @@ if (!isset($_SESSION['username'])) {
           </thead>
           <tbody>
             <?php
-            $id_Trainee = $_SESSION['id_Trainee'];
+            $id_student = $_SESSION['id_student'];
             require_once('../config/dbconnector.php');
             $cn = new DBConnector();
-            $sql="SELECT class.name,class.id,class.id_Trainer from users, trainee_manager, class_student, class WHERE users.id_Trainee = trainee_manager.id_Trainee and class_student.student_id = trainee_manager.id_Trainee AND class.id = class_student.class_id and users.id_Trainee= ".$id_Trainee."";
+            $sql="SELECT class.name,class.id,class.id_tutor from users, student_manager, class_student, class WHERE users.id_student = student_manager.id_student and class_student.student_id = student_manager.id_student AND class.id = class_student.class_id and users.id_student= ".$id_student."";
             $rows = $cn->runQuery($sql);
             foreach ($rows as $r) {
               ?>        
               <tr>
                 <td><?=$r['name']?></td>
-                <td><?=$r['id_Trainer']?></td>
+                <td><?=$r['id_tutor']?></td>
                 <td>
                   <a href="../view/ViewClass.php?id=<?=$r['id']?>" class="Class" title="Class" data-toggle="tooltip">
                     <i class="material-icons">meeting_room</i>
                   </a>
-                  <a href="../manager/messStudent.php?Id_permision=<?=$r['id_Trainer']?>&Id_student=<?php echo $id_Trainee ?>" class="Chat" title="Chat" data-toggle="tooltip">
+                  <a href="../manager/messStudent.php?Id_permision=<?=$r['id_tutor']?>&Id_student=<?php echo $id_student ?>" class="Chat" title="Chat" data-toggle="tooltip">
                     <i class="material-icons">&#xe253;</i>
                   </a>
                   
                 </td>
                 <td>
-                  <a href="../view/Calandar.php?id_Trainee=<?php echo $id_Trainee ?>&id_Trainer=<?=$r['id_Trainer']?>" class="Appointment" title="Appointment" data-toggle="tooltip">
+                  <a href="../view/Calandar.php?id_student=<?php echo $id_student ?>&id_tutor=<?=$r['id_tutor']?>" class="Appointment" title="Appointment" data-toggle="tooltip">
                   <i class="material-icons">&#xe8ae;</i>
                   </a> 
                 </td>

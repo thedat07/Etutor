@@ -3,11 +3,8 @@ require_once('../config/dbconnector.php');
 $student_id=$_GET['student_id'];
 $id=$_GET['id'];
 
-
-
-
 $conn1 = new DBConnector();
-$sql1 = "Select * from users WHERE id_Trainee='$student_id' ";
+$sql1 = "Select * from users WHERE id_student='$student_id' ";
 $rows1 = $conn1 -> runQuery($sql1);
 foreach($rows1 as $r) {
     require '../PHPMailer-master/PHPMailerAutoload.php';

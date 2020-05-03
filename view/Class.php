@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
    <title>Class Manager</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -98,7 +99,7 @@ if (!isset($_SESSION['username'])) {
             <tr class="w3-light-grey">
               <th>ID Class</th>
               <th>Name Class</th>
-              <th>Name Trainer</th>
+              <th>Tutor</th>
               <th>Students</th>
               <th>Action</th>
             </tr>
@@ -109,18 +110,18 @@ if (!isset($_SESSION['username'])) {
             $cn = new DBConnector();
             if(isset($_POST['search'])) {
               $valueToSearch = $_POST['valueToSearch'];
-              $sql="SELECT * FROM class, trainer_manager WHERE class.id_Trainer = trainer_manager.id_Trainer and class.name like  '%".$valueToSearch."%'";
+              $sql="SELECT * FROM class, tutor_manager WHERE class.id_tutor = tutor_manager.id_tutor and class.name like  '%".$valueToSearch."%'";
               $rows = $cn->runQuery($sql);
             }
             else{
-              $sql="SELECT * FROM class, trainer_manager WHERE class.id_Trainer = trainer_manager.id_Trainer";
+              $sql="SELECT * FROM class, tutor_manager WHERE class.id_tutor = tutor_manager.id_tutor";
               $rows = $cn->runQuery($sql);}
               foreach ($rows as $r) {
                 ?>        
                 <tr>
                   <td><?=$r['id']?></td>
                   <td><?=$r['name']?></td>
-                  <td><?=$r['name_Trainer']?></td>
+                  <td><?=$r['name_tutor']?></td>
                   <td>
                     <a href="../view/Classinfo.php?id=<?=$r['id']?>" class="List" title="List" data-toggle="tooltip">
                       <i class="material-icons">people_alt</i>

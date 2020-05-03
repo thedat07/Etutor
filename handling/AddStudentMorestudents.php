@@ -21,16 +21,16 @@ if (isset($_POST['add_student'])) {
 
 
     $conn1 = new DBConnector();
-    $sql1 = "Select * from users WHERE id_Trainee='$student_id1' ";
-    $sql2 = "Select * from users WHERE id_Trainee='$student_id2' ";
-    $sql3 = "Select * from users WHERE id_Trainee='$student_id3' ";
-    $sql4 = "Select * from users WHERE id_Trainee='$student_id4' ";
-    $sql5 = "Select * from users WHERE id_Trainee='$student_id5' ";
-    $sql6 = "Select * from users WHERE id_Trainee='$student_id6' ";
-    $sql7 = "Select * from users WHERE id_Trainee='$student_id7' ";
-    $sql8 = "Select * from users WHERE id_Trainee='$student_id8' ";
-    $sql9 = "Select * from users WHERE id_Trainee='$student_id9' ";
-    $sql10 = "Select * from users WHERE id_Trainee='$student_id10' ";
+    $sql1 = "Select * from users WHERE id_student='$student_id1' ";
+    $sql2 = "Select * from users WHERE id_student='$student_id2' ";
+    $sql3 = "Select * from users WHERE id_student='$student_id3' ";
+    $sql4 = "Select * from users WHERE id_student='$student_id4' ";
+    $sql5 = "Select * from users WHERE id_student='$student_id5' ";
+    $sql6 = "Select * from users WHERE id_student='$student_id6' ";
+    $sql7 = "Select * from users WHERE id_student='$student_id7' ";
+    $sql8 = "Select * from users WHERE id_student='$student_id8' ";
+    $sql9 = "Select * from users WHERE id_student='$student_id9' ";
+    $sql10 = "Select * from users WHERE id_student='$student_id10' ";
 
     $rows1 = $conn1 -> runQuery($sql1);
     $rows2 = $conn1 -> runQuery($sql2);

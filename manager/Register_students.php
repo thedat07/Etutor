@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Register Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
   <link rel="stylesheet" type="text/css" href="../css/table.css">
@@ -135,7 +136,7 @@ if (!isset($_SESSION['username'])) {
                 <label >ID Student:</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-id-badge"></i></span>
-                  <input type="text" class="form-control"  name="id_Trainee"  required>
+                  <input type="text" class="form-control"  name="id_student"  required>
                 </div>
               </div>
               <div class="input-group ">

@@ -13,12 +13,12 @@ if (isset($_POST['add_document'])) {
 
     $id=$_GET['id'];
     $id_class=$_GET['id_class'];
-    $id_Trainee=$_GET['id_Trainee'];
+    $id_student=$_GET['id_student'];
 
     $Content =$_POST['Content'];
     move_uploaded_file($_FILES["file"]["tmp_name"], $targetFilePath);
 
-    $sql="Insert Into comment(Content, Document,id_document,id_trainee,id_class,Name) values('".$Content."','".$fileName."','".$id."','".$id_Trainee."','".$id_class."','Student')";
+    $sql="Insert Into comment(Content, Document,id_document,id_student,id_class,Name) values('".$Content."','".$fileName."','".$id."','".$id_student."','".$id_class."','Student')";
 
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);

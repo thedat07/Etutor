@@ -5,7 +5,7 @@ if (isset($_POST['Add'])) {
     $id=$_GET['id']; 
     $Id_student =$_POST['Id_student'];
 
-    $sql="Insert Into mess(id_trainer , id_trainee, info ) values('".$id."','".$Id_student."','Permision')";
+    $sql="Insert Into mess(id_tutor , id_student, info ) values('".$id."','".$Id_student."','Permision')";
     
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);
@@ -27,7 +27,7 @@ elseif (isset($_POST['Add_S'])) {
     $id=$_GET['id']; 
     $Id_Permision =$_POST['Id_Permision'];
 
-    $sql="Insert Into mess(id_trainee , id_trainer, info ) values('".$id."','".$Id_Permision."','Student')";
+    $sql="Insert Into mess(id_student , id_tutor, info ) values('".$id."','".$Id_Permision."','Student')";
     
     $cn = new DBConnector();
     $return = $cn->execStatement($sql);

@@ -1,14 +1,12 @@
 <?php
-
-
 $connect = new PDO('mysql:host=localhost;dbname=id9817382_fpt', 'root', '');
 
 $data = array();
 
-$id_Trainer=$_GET['id_Trainer']; 
-$id_Trainee=$_GET['id_Trainee']; 
+$id_tutor=$_GET['id_tutor']; 
+$id_student=$_GET['id_student']; 
 
-$query = "SELECT * FROM events where id_Trainer='".$id_Trainer."' and id_Trainee='".$id_Trainee."'  ORDER BY id";
+$query = "SELECT * FROM events where id_tutor='".$id_tutor."' and id_student='".$id_student."'  ORDER BY id";
 
 $statement = $connect->prepare($query);
 

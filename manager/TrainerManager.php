@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Tutor Manager</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -83,27 +84,27 @@ if (!isset($_SESSION['username'])) {
   <div class="main_container">
     <div class="item">
       <div class="panel panel-default">
-        <div class="panel-heading">Trainer add</div>
+        <div class="panel-heading">Tutor add</div>
           <div class="panel-body">
             <form action="../handling/handlingTrainer.php" method="post" enctype="MULTIPLE/form-data">
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Name</label>
-                  <input type="text" class="form-control" id="inputEmail4" placeholder="Name" name="name_Trainer" name="name_Trainer" required>
+                  <input type="text" class="form-control" id="inputEmail4" placeholder="Name" name="name_tutor" name="name_tutor" required>
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Working place</label>
-                  <input type="text" class="form-control" id="inputPassword4" placeholder="Working place" name="Working_place_Trainer" name="Working_place_Trainer">
+                  <input type="text" class="form-control" id="inputPassword4" placeholder="Working place" name="Working_place_tutor" name="Working_place_tutor">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Email</label>
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email_Trainer" name="email_Trainer">
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" name="email_tutor" name="email_tutor">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Telephone</label>
-                  <input type="text" class="form-control" id="inputPassword4" placeholder="Telephone" name="telephone_Trainer" name="telephone_Trainer">
+                  <input type="text" class="form-control" id="inputPassword4" placeholder="Telephone" name="telephone_tutor" name="telephone_tutor">
                 </div>
               </div>
               <div class="input-group col-md-6">            

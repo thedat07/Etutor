@@ -19,7 +19,8 @@ if (!isset($_SESSION['username'])) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>HomePage</title>
+  <title>Edit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
   <link rel="stylesheet" type="text/css" href="../css/table.css">
@@ -136,8 +137,8 @@ if (!isset($_SESSION['username'])) {
               <div class="form-group">
                 <label >Id personal:</label>
                 <div class="input-group">
-                  <span class="input-group-addon"><i class="fa fa-id-badge" value="<?=$r['id_Trainer']?>"></i></span>
-                  <input type="text" class="form-control"  name="id_Trainer" id="id_Trainer" value="<?=$r['id_Trainer']?>" required>
+                  <span class="input-group-addon"><i class="fa fa-id-badge" value="<?=$r['id_tutor']?>"></i></span>
+                  <input type="text" class="form-control"  name="id_tutor" id="id_tutor" value="<?=$r['id_tutor']?>" required>
                 </div>
               </div>
 

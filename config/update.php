@@ -6,12 +6,12 @@ $connect = new PDO('mysql:host=localhost;dbname=id9817382_fpt', 'root', '');
 
 if(isset($_POST["id"]))
 {
-	$id_Trainer=$_GET['id_Trainer']; 
-	$id_Trainee=$_GET['id_Trainee']; 
+	$id_tutor=$_GET['id_tutor']; 
+	$id_student=$_GET['id_student']; 
 	$query = "
 	UPDATE events 
 	SET title=:title, start_event=:start_event, end_event=:end_event 
-	WHERE id=:id and id_Trainer='".$id_Trainer."' and id_Trainee='".$id_Trainee."'
+	WHERE id=:id and id_tutor='".$id_tutor."' and id_student='".$id_student."'
 	";
 	$statement = $connect->prepare($query);
 	$statement->execute(

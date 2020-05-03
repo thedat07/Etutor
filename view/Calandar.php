@@ -1,7 +1,7 @@
 <?php
 session_start();
-$id_Trainee=$_GET['id_Trainee'];
-$id_Trainer=$_GET['id_Trainer'];
+$id_student=$_GET['id_student'];
+$id_tutor=$_GET['id_tutor'];
 if (!isset($_SESSION['username'])) {
  header('Location:../manager/login.php');
 } else
@@ -22,6 +22,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Calandar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -42,7 +43,6 @@ if (!isset($_SESSION['username'])) {
 
 
     <script>
-   
     $(document).ready(function() {
      var calendar = $('#calendar').fullCalendar({
       editable:true,
@@ -51,7 +51,7 @@ if (!isset($_SESSION['username'])) {
        center:'title',
        right:'month,agendaWeek,agendaDay'
      },
-     events: '../config/load.php?id_Trainee=<?php echo $id_Trainee ?>&id_Trainer=<?php echo $id_Trainer ?>',
+     events: '../config/load.php?id_student=<?php echo $id_student ?>&id_tutor=<?php echo $id_tutor ?>',
      selectable:true,
      selectHelper:true,
      select: function(start, end, allDay)
@@ -62,7 +62,7 @@ if (!isset($_SESSION['username'])) {
         var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
         var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
         $.ajax({
-         url:"../config/insert.php?id_Trainee=<?php echo $id_Trainee ?>&id_Trainer=<?php echo $id_Trainer ?>",
+         url:"../config/insert.php?id_student=<?php echo $id_student ?>&id_tutor=<?php echo $id_tutor ?>",
          type:"POST",
          data:{title:title, start:start, end:end},
          success:function()
@@ -81,7 +81,7 @@ if (!isset($_SESSION['username'])) {
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"../config/update.php?id_Trainee=<?php echo $id_Trainee ?>&id_Trainer=<?php echo $id_Trainer ?>",
+      url:"../config/update.php?id_student=<?php echo $id_student ?>&id_tutor=<?php echo $id_tutor ?>",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function(){
@@ -98,7 +98,7 @@ if (!isset($_SESSION['username'])) {
      var title = event.title;
      var id = event.id;
      $.ajax({
-      url:"../config/update.php?id_Trainee=<?php echo $id_Trainee ?>&id_Trainer=<?php echo $id_Trainer ?>",
+      url:"../config/update.php?id_student=<?php echo $id_student ?>&id_tutor=<?php echo $id_tutor ?>",
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function()
@@ -115,7 +115,7 @@ if (!isset($_SESSION['username'])) {
      {
       var id = event.id;
       $.ajax({
-       url:"../config/delete.php?id_Trainee=<?php echo $id_Trainee ?>&id_Trainer=<?php echo $id_Trainer ?>",
+       url:"../config/delete.php?id_student=<?php echo $id_student ?>&id_tutor=<?php echo $id_tutor ?>",
        type:"POST",
        data:{id:id},
        success:function()

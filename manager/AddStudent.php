@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <head>
   <meta charset="UTF-8">
   <title>Add Student</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
@@ -104,8 +105,8 @@ if (!isset($_SESSION['username'])) {
                </td>
               </div>
                   <div class="form-group">
-                    <label >ID Trainee:</label>
-                    <input type="text" class="form-control" placeholder="ID trainee" name="student_id" required>
+                    <label >ID Student:</label>
+                    <input type="text" class="form-control" placeholder="ID student" name="student_id" required>
                   </div>  
                   <div class="input-group">            
                     <input type="submit" class="btn btn-success" name="add_student" id="add_student" value="Add">
