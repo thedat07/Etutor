@@ -111,7 +111,11 @@ if (!isset($_SESSION['username'])) {
             require_once('../config/dbconnector.php');
             $cn = new DBConnector();
            $id=$_GET['id'];
+<<<<<<< HEAD
             $sql="Select * from users where id_student = '$id'";  
+=======
+            $sql="Select * from users where id_Trainee = '$id'";  
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
             $rows = $cn->runQuery($sql);                       
             foreach ($rows as $r) 
           {
@@ -153,7 +157,11 @@ if (!isset($_SESSION['username'])) {
                   $id_student = $_SESSION['id_student'];
                   require_once('../config/dbconnector.php');
                   $cn = new DBConnector();
+<<<<<<< HEAD
                   $sql="SELECT tutor_manager.name_tutor,logchatbox.Time FROM logchatbox, tutor_manager WHERE logchatbox.id_student  = ".$id_student." and logchatbox.id_tutor = tutor_manager.id_tutor and logchatbox.checkP='1' ORDER BY logchatbox.Time DESC";
+=======
+                  $sql="SELECT trainer_manager.name_Trainer,logchatbox.Time FROM logchatbox, trainer_manager WHERE logchatbox.id_Trainee  = ".$id_Trainee." and logchatbox.id_Trainer = trainer_manager.id_Trainer and logchatbox.checkP='1' ORDER BY logchatbox.Time DESC";
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
                   $rows = $cn->runQuery($sql);
                   foreach ($rows as $r) {
                     ?>
@@ -187,11 +195,19 @@ if (!isset($_SESSION['username'])) {
               </thead>
               <tbody>
                 <?php 
+<<<<<<< HEAD
                 $id_student = $_SESSION['id_student'] ;
                
                 require_once('../config/dbconnector.php');
                 $cn = new DBConnector();
                 $sql="SELECT DISTINCT(class.name),class.id,log.Time from users, student_manager, class_student, class, log WHERE users.id_student = student_manager.id_student and class_student.student_id = student_manager.id_student AND class.id = class_student.class_id and users.id_student= ".$id_student."  AND log.id_student = student_manager.id_student  ORDER BY log.Time DESC";
+=======
+                $id_Trainee = $_SESSION['id_Trainee'] ;
+               
+                require_once('../config/dbconnector.php');
+                $cn = new DBConnector();
+                $sql="SELECT DISTINCT(class.name),class.id,log.Time from users, trainee_manager, class_student, class, log WHERE users.id_Trainee = trainee_manager.id_Trainee and class_student.student_id = trainee_manager.id_Trainee AND class.id = class_student.class_id and users.id_Trainee= ".$id_Trainee."  AND log.id_Trainee = trainee_manager.id_Trainee  ORDER BY log.Time DESC";
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
                 $rows = $cn->runQuery($sql);
                 foreach ($rows as $r) {
                   ?>
@@ -228,13 +244,21 @@ if (!isset($_SESSION['username'])) {
             require_once('../config/dbconnector.php');
             $cn = new DBConnector();
             $id=$_GET['id'];
+<<<<<<< HEAD
             $sql="Select * from logchatbox where id_student = $id";  
+=======
+            $sql="Select * from logchatbox where id_Trainee = $id";  
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
             $rows = $cn->runQuery($sql);                       
             foreach ($rows as $r) 
             {
             ?> 
                     <tr id="tr-id-2" class="tr-class-2">
+<<<<<<< HEAD
                       <td><?=$r['id_tutor']?></td>
+=======
+                      <td><?=$r['id_Trainer']?></td>
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
                       <td><i><?=$r['Time']?></i></td>
                     </tr>
                   <?php } ?>
@@ -265,7 +289,11 @@ if (!isset($_SESSION['username'])) {
                 require_once('../config/dbconnector.php');
                 $cn = new DBConnector();
                 $id=$_GET['id'];
+<<<<<<< HEAD
                 $sql="Select * from log where id_student = $id";  
+=======
+                $sql="Select * from log where id_Trainee = $id";  
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
                 $rows = $cn->runQuery($sql);                       
                 foreach ($rows as $r) 
                 {

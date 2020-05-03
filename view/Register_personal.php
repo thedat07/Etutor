@@ -124,7 +124,11 @@ if (!isset($_SESSION['username'])) {
                     <a href="../edit/Edit-Register_personal.php?id=<?=$r['id']?>" class="Edit" title="Edit" data-toggle="tooltip">
                       <i class="material-icons">edit</i>
                     </a>
+<<<<<<< HEAD
                     <a href="../view/DashbordOfPersonal.php?id=<?=$r['id_tutor']?>" class="View" title="Dashboard" data-toggle="tooltip">
+=======
+                    <a href="../view/DashbordOfPersonal.php?id=<?=$r['id_Trainer']?>" class="View" title="Dashboard" data-toggle="tooltip">
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
                       <i class="material-icons">dashboard</i>
                     </a>
                     <a href="../handling/handingregisterPersonal.php?id=<?=$r['id']?>" class="Delete" title="Delete" data-toggle="tooltip">

@@ -108,7 +108,11 @@ if (!isset($_SESSION['username'])) {
             require_once('../config/dbconnector.php');
             $cn = new DBConnector();
            $id=$_GET['id'];
+<<<<<<< HEAD
             $sql="Select * from users where id_tutor = '$id'";  
+=======
+            $sql="Select * from users where id_Trainer = '$id'";  
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
             $rows = $cn->runQuery($sql);                       
             foreach ($rows as $r) 
           {
@@ -262,6 +266,81 @@ if (!isset($_SESSION['username'])) {
                 $cn = new DBConnector();
                 $id=$_GET['id'];
                 $sql="Select * from log where id_tutor = $id";  
+                $rows = $cn->runQuery($sql);                       
+                foreach ($rows as $r) 
+                {
+                ?> 
+                  <tr id="tr-id-2" class="tr-class-2">
+                    <td><?=$r['id_Class']?></td>
+                    <td><i><?=$r['Time']?></i></td>
+                  </tr>
+                <?php } ?>
+              </tbody>    
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+         <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+      <div class="w3-panel">
+            <div class="w3-row-padding" style="margin:0 -16px">
+              <div class="w3-twothird">
+                <h5><b>Recently accessed chatbox</b></h5>
+                <table 
+                class="w3-table w3-striped w3-white "
+                data-toggle="table" 
+                data-pagination="true"
+                >
+                <thead>
+                  <tr>
+                    <th >ID Student</i></th>
+                    <th >Time</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <?php 
+            require_once('../config/dbconnector.php');
+            $cn = new DBConnector();
+            $id=$_GET['id'];
+            $sql="Select * from logchatbox where id_Trainer = $id";  
+            $rows = $cn->runQuery($sql);                       
+            foreach ($rows as $r) 
+            {
+            ?> 
+                    <tr id="tr-id-2" class="tr-class-2">
+                      <td><?=$r['id_Trainee']?></td>
+                      <td><i><?=$r['Time']?></i></td>
+                    </tr>
+                  <?php } ?>
+                </tbody>    
+              </table>
+            </div>
+          </div>
+        </div>
+    </div>
+      <div class="item <?php echo $_SESSION['permision'] == "Admin" ? 'show' : 'hidden';?>">
+        <div class="w3-panel">
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-twothird">
+              <h5><b>Recently accessed class</b></h5>
+              <table 
+              class="w3-table w3-striped w3-white "
+              data-toggle="table" 
+              data-pagination="true"
+              >
+              <thead>
+                <tr>
+                  <th >ID Class</i></th>
+                  <th >Time</th>
+                </tr>
+              </thead>
+              <tbody>
+               <?php 
+                require_once('../config/dbconnector.php');
+                $cn = new DBConnector();
+                $id=$_GET['id'];
+                $sql="Select * from log where id_Trainer = $id";  
                 $rows = $cn->runQuery($sql);                       
                 foreach ($rows as $r) 
                 {

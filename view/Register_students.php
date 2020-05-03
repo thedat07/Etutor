@@ -127,7 +127,11 @@ if (!isset($_SESSION['username'])) {
 
 
                
+<<<<<<< HEAD
                     <a href="../view/DashbordOfStudent.php?id=<?=$r['id_student']?>" class="View" title="Dashboard" data-toggle="tooltip">
+=======
+                    <a href="../view/DashbordOfStudent.php?id=<?=$r['id_Trainee']?>" class="View" title="Dashboard" data-toggle="tooltip">
+>>>>>>> e7b2a89174ac1f9877d8d2c70ea3763e1cbd42a7
                       <i class="material-icons">dashboard</i>
                     </a>
 
